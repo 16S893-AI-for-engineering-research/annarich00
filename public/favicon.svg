@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#79f2ff"/><stop offset="1" stop-color="#ffb347"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="#050816"/><circle cx="32" cy="32" r="18" fill="none" stroke="url(#g)" stroke-width="4"/><path d="M20 36c5-10 19-10 24 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rocket favicon">
+  <rect width="64" height="64" rx="16" fill="#050816"/>
+  <path d="M32 9c6 6 10 14 10 23 0 7-2 13-5 18l-5 4-5-4c-3-5-5-11-5-18 0-9 4-17 10-23z" fill="#79f2ff"/>
+  <circle cx="32" cy="26" r="4" fill="#050816"/>
+  <path d="M24 44l-5 7 8-2 5 6 5-6 8 2-5-7" fill="#ffb347"/>
+</svg>
