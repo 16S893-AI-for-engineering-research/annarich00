@@ -3,12 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { resolvePath } from '../lib/paths';
 
 const photos = [
-  { src: '/images/wedding-charlie.jpg', alt: 'Anna and Charlie at a wedding' },
-  { src: '/images/ULArocket-photo.jpg', alt: 'Anna near a ULA rocket' },
-  { src: '/images/backpacking.jpg', alt: 'Anna backpacking outdoors' },
-  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event' },
-  { src: '/images/surf-anna.jpg', alt: 'Anna surfing' },
-  { src: '/images/family.jpg', alt: 'Anna with family' },
+  {
+    src: '/images/wedding-charlie.jpg',
+    alt: 'Anna and Charlie at a wedding',
+    span: 'md:col-span-2 md:row-span-2',
+  },
+  {
+    src: '/images/ULArocket-photo.jpg',
+    alt: 'Anna near a ULA rocket',
+    span: 'rocket-card md:col-span-1 md:row-span-2',
+  },
+  { src: '/images/backpacking.jpg', alt: 'Anna backpacking outdoors', span: 'md:col-span-1' },
+  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event', span: 'md:col-span-1' },
+  { src: '/images/surf-anna.jpg', alt: 'Anna surfing', span: 'md:col-span-1' },
+  { src: '/images/family.jpg', alt: 'Anna with family', span: 'md:col-span-1' },
 ];
 ---
 
@@ -22,12 +30,54 @@ const photos = [
       <p class="max-w-3xl text-slate-300">
         She took on this project because she sees a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, Anna loves backpacking, hiking, and just about any outdoor sport, and she brings the same curiosity and energy to research that she does to time outdoors. Faith and family are deeply important to her, and she and her husband were active in a wonderful church community in California where they helped with kids' church. She is also, proudly, a chocolate lover.
       </p>
+      <p class="max-w-3xl text-orbital/90">
+        Hover over the rocket photo to see where ideas launch.
+      </p>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-3 md:auto-rows-[180px]">
       {photos.map((photo) => (
-        <img src={resolvePath(photo.src)} alt={photo.alt} class="h-56 w-full rounded-2xl object-cover" />
+        <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
+          <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110" />
+          {photo.src === '/images/ULArocket-photo.jpg' && (
+            <>
+              <div class="launch-trail pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"></div>
+              <div class="launch-rocket pointer-events-none absolute bottom-3 left-3 text-2xl opacity-0 transition duration-300 group-hover:opacity-100">🚀</div>
+              <div class="pointer-events-none absolute inset-x-4 bottom-4 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
+                Hover here — watch the rocket launch from the lower left to the upper right.
+              </div>
+            </>
+          )}
+          <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-sm text-white/90">{photo.alt}</figcaption>
+        </figure>
       ))}
     </div>
   </section>
+
+  <style>
+    .launch-trail {
+      background:
+        radial-gradient(circle at 12% 82%, rgba(121, 242, 255, 0.95), transparent 8%),
+        linear-gradient(40deg, transparent 44%, rgba(121, 242, 255, 0.55) 49%, rgba(255, 179, 71, 0.65) 52%, transparent 58%);
+      clip-path: polygon(0 100%, 0 100%, 100% 0, 100% 0);
+      animation: launchSweep 1.4s ease-out forwards;
+      transform-origin: bottom left;
+    }
+
+    .launch-rocket {
+      animation: rocketFly 1.4s ease-out forwards;
+    }
+
+    @keyframes launchSweep {
+      0% { opacity: 0; transform: scale(0.9); }
+      15% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.05); }
+    }
+
+    @keyframes rocketFly {
+      0% { opacity: 0; transform: translate(0, 0) rotate(-8deg); }
+      10% { opacity: 1; }
+      100% { opacity: 0; transform: translate(260px, -220px) rotate(12deg); }
+    }
+  </style>
 </BaseLayout>
