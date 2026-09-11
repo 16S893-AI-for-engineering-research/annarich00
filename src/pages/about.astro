@@ -41,10 +41,10 @@ const photos = [
           <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110" />
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
-              <div class="rocket-launch pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"></div>
-              <div class="rocket pointer-events-none absolute bottom-3 left-3 text-2xl opacity-0 transition duration-300 group-hover:opacity-100">🚀</div>
+              <div class="rocket-launch pointer-events-none fixed left-0 top-0 z-50 opacity-0"></div>
+              <div class="rocket pointer-events-none fixed left-0 top-0 z-[60] text-6xl opacity-0">🚀</div>
               <div class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
-                Hover here — watch the rocket launch from the lower left to the upper right.
+                Hover here — watch the rocket launch across the whole page.
               </div>
             </>
           )}
@@ -55,33 +55,41 @@ const photos = [
 
   <style>
     .rocket-launch {
+      width: 180vw;
+      height: 180vw;
+      transform: translate(-12vw, 55vh) rotate(-35deg) scale(0.2);
+      transform-origin: center;
       background:
-        radial-gradient(circle at 12% 82%, rgba(121, 242, 255, 0.95), transparent 8%),
-        linear-gradient(40deg, transparent 44%, rgba(121, 242, 255, 0.55) 49%, rgba(255, 179, 71, 0.65) 52%, transparent 58%);
+        radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.95), transparent 7%),
+        radial-gradient(circle at 18% 82%, rgba(121, 242, 255, 0.95), transparent 10%),
+        linear-gradient(35deg, transparent 44%, rgba(121, 242, 255, 0.6) 48%, rgba(255, 179, 71, 0.8) 52%, transparent 58%);
       clip-path: polygon(0 100%, 0 100%, 100% 0, 100% 0);
-      animation: launchSweep 1.4s ease-out forwards;
-      transform-origin: bottom left;
+      pointer-events: none;
     }
 
     .rocket {
-      animation: rocketFly 1.4s ease-out forwards;
+      transform: translate(0, 0) rotate(-10deg);
+      filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.7));
     }
 
-    .photo-card:hover .rocket-launch,
+    .photo-card:hover .rocket-launch {
+      animation: launchAcross 1.8s ease-out forwards;
+    }
+
     .photo-card:hover .rocket {
-      animation-play-state: running;
+      animation: rocketFly 1.8s ease-out forwards;
     }
 
-    @keyframes launchSweep {
-      0% { opacity: 0; transform: scale(0.9); }
-      15% { opacity: 1; }
-      100% { opacity: 0; transform: scale(1.05); }
+    @keyframes launchAcross {
+      0% { opacity: 0; transform: translate(-12vw, 55vh) rotate(-35deg) scale(0.18); }
+      8% { opacity: 1; }
+      100% { opacity: 0; transform: translate(22vw, -30vh) rotate(-35deg) scale(0.18); }
     }
 
     @keyframes rocketFly {
-      0% { opacity: 0; transform: translate(0, 0) rotate(-8deg); }
-      10% { opacity: 1; }
-      100% { opacity: 0; transform: translate(260px, -220px) rotate(12deg); }
+      0% { opacity: 0; transform: translate(-10vw, 56vh) scale(1) rotate(-12deg); }
+      8% { opacity: 1; }
+      100% { opacity: 0; transform: translate(24vw, -28vh) scale(1.35) rotate(18deg); }
     }
   </style>
 </BaseLayout>
