@@ -1,20 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { resolvePath } from '../lib/paths';
+
+const photos = [
+  { src: '/images/wedding-charlie.jpg', alt: 'Anna and Charlie at a wedding' },
+  { src: '/images/photo-1.jpg', alt: 'Personal photo 1' },
+  { src: '/images/photo-2.jpg', alt: 'Personal photo 2' },
+  { src: '/images/photo-3.jpg', alt: 'Personal photo 3' },
+  { src: '/images/photo-4.jpg', alt: 'Personal photo 4' },
+  { src: '/images/photo-5.jpg', alt: 'Personal photo 5' },
+];
 ---
 
 <BaseLayout title="About | Anna Ford-Richards" description="Background, research interests, and project motivation.">
-  <section class="space-y-6">
-    <h1 class="text-4xl font-bold">About Anna</h1>
-    <p class="max-w-3xl text-slate-300">
-      Anna Ford-Richards is a Space Force fellow interested in cislunar operations, orbital analysis, and the use of agents to support research workflows. She is pursuing this project to understand where AI can meaningfully assist in rendezvous analysis without losing technical rigor.
-    </p>
+  <section class="space-y-8">
+    <div class="space-y-4">
+      <h1 class="text-4xl font-bold">About Anna</h1>
+      <p class="max-w-3xl text-slate-300">
+        Anna Ford-Richards is a Space Force fellow focused on cislunar operations, orbital analysis, and how agents can support research and engineering workflows. Her time as a Space Force engineer at Vandenberg gave her firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
+      </p>
+      <p class="max-w-3xl text-slate-300">
+        She took on this project because she sees a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, Anna loves backpacking, hiking, and just about any outdoor sport, and she brings the same curiosity and energy to research that she does to time outdoors. Faith and family are deeply important to her, and she and her husband were active in a wonderful church community in California where they helped with kids' church. She is also, proudly, a chocolate lover.
+      </p>
+    </div>
+
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
-      <img src="/agent_retry/images/wedding-charlie.jpg" alt="Personal photo" class="h-56 w-full rounded-2xl object-cover" />
+      {photos.map((photo) => (
+        <img src={resolvePath(photo.src)} alt={photo.alt} class="h-56 w-full rounded-2xl object-cover" />
+      ))}
     </div>
   </section>
 </BaseLayout>
