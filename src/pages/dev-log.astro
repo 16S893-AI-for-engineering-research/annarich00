@@ -2,16 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const entries = [
-  { date: '2026-09-11', title: 'Project site scaffolded', body: 'Created the Astro portfolio structure and set up the base layout, navigation, and theme.' },
-  { date: '2026-09-11', title: 'Content plan drafted', body: 'Outlined the rendezvous project pages and documented the information needed for future updates.' },
-  { date: '2026-09-11', title: 'Next steps', body: 'Add weekly notes on experiments, benchmarks, and agent failure modes.' },
+  { date: '2026-09-11', title: 'Site scope defined', body: 'Drafted a static Astro portfolio for Anna Ford-Richards with pages for Home, About, Project, and Dev Log.' },
+  { date: '2026-09-11', title: 'Project focus finalized', body: 'Framed the research question around whether agents can solve a classic two-body rendezvous problem accurately and translate results into current orbital propagation tools.' },
+  { date: '2026-09-11', title: 'Content themes outlined', body: 'Captured the Space Force, Vandenberg, cislunar, hiking, faith, family, and chocolate details that should appear on the site.' },
 ];
 ---
 
 <BaseLayout title="Dev Log | Agents in a Rendezvous" description="Weekly research updates and progress notes.">
   <section class="space-y-6">
     <h1 class="text-4xl font-bold">Dev Log</h1>
-    <p class="text-slate-300">Use this page for weekly progress updates. Add a new entry for each milestone, test, or insight.</p>
+    <p class="text-slate-300">These entries summarize the website content drafted during this session. Add future updates only when new site content or project progress is ready.</p>
     <div class="space-y-4">
       {entries.map((entry) => (
         <article class="card">
@@ -23,7 +23,7 @@ const entries = [
     </div>
     <div class="card">
       <h2 class="text-xl font-semibold">Template for future entries</h2>
-      <pre class="mt-3 overflow-x-auto rounded-xl bg-black/30 p-4 text-sm text-slate-200">Date: YYYY-MM-DD\nTitle: Short update\nBody: What you tested, what worked, what failed, and what comes next.</pre>
+      <pre class="mt-3 overflow-x-auto rounded-xl bg-black/30 p-4 text-sm text-slate-200">Date: YYYY-MM-DD\nTitle: Short update\nBody: Summary of new website content, edits, or project progress from that week.</pre>
     </div>
   </section>
 </BaseLayout>
