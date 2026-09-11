@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resolvePath } from '../lib/paths';
+---
+
+<BaseLayout title="Agents in a Rendezvous" description="Anna Ford-Richards research portfolio on agentic AI for rendezvous analysis.">
+  <section class="grid gap-10 lg:grid-cols-2 lg:items-center">
+    <div>
+      <p class="mb-4 text-sm uppercase tracking-[0.3em] text-orbital">Agentic AI for Research</p>
+      <h1 class="text-5xl font-bold leading-tight sm:text-6xl">Agents in a Rendezvous</h1>
+      <p class="mt-6 max-w-2xl text-lg text-slate-300">
+        Exploring whether agents can reason through a classic two-body rendezvous problem with enough fidelity to support operational analysis. This project tests how well AI can solve, validate, and translate maneuver recommendations into current orbital propagation tools.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a class="rounded-full bg-orbital px-5 py-3 font-semibold text-slate-950 transition hover:opacity-90" href={resolvePath('/project')}>Project</a>
+        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-orbital" href={resolvePath('/about')}>About</a>
+        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-thruster" href={resolvePath('/dev-log')}>Dev Log</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <p class="text-sm text-orbital">Differentiator 1</p>
+          <p class="mt-2 text-sm text-slate-300">Two-body rendezvous analysis grounded in current propagation workflows.</p>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <p class="text-sm text-thruster">Differentiator 2</p>
+          <p class="mt-2 text-sm text-slate-300">Agent evaluation focused on accuracy, repeatability, and maneuver translation.</p>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+          <p class="text-sm text-white">Differentiator 3</p>
+          <p class="mt-2 text-sm text-slate-300">Static research site designed to document progress and results clearly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

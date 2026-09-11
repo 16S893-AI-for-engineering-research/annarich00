@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const entries = [
+  { date: '2026-09-11', title: 'Project site scaffolded', body: 'Created the Astro portfolio structure and set up the base layout, navigation, and theme.' },
+  { date: '2026-09-11', title: 'Content plan drafted', body: 'Outlined the rendezvous project pages and documented the information needed for future updates.' },
+  { date: '2026-09-11', title: 'Next steps', body: 'Add weekly notes on experiments, benchmarks, and agent failure modes.' },
+];
+---
+
+<BaseLayout title="Dev Log | Agents in a Rendezvous" description="Weekly research updates and progress notes.">
+  <section class="space-y-6">
+    <h1 class="text-4xl font-bold">Dev Log</h1>
+    <p class="text-slate-300">Use this page for weekly progress updates. Add a new entry for each milestone, test, or insight.</p>
+    <div class="space-y-4">
+      {entries.map((entry) => (
+        <article class="card">
+          <p class="text-sm text-orbital">{entry.date}</p>
+          <h2 class="mt-2 text-xl font-semibold">{entry.title}</h2>
+          <p class="mt-2 text-slate-300">{entry.body}</p>
+        </article>
+      ))}
+    </div>
+    <div class="card">
+      <h2 class="text-xl font-semibold">Template for future entries</h2>
+      <pre class="mt-3 overflow-x-auto rounded-xl bg-black/30 p-4 text-sm text-slate-200">Date: YYYY-MM-DD\nTitle: Short update\nBody: What you tested, what worked, what failed, and what comes next.</pre>
+    </div>
+  </section>
+</BaseLayout>

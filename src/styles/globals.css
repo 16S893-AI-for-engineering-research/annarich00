@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-void text-slate-100 antialiased;
+  background-image:
+    radial-gradient(circle at top, rgba(121, 242, 255, 0.14), transparent 35%),
+    radial-gradient(circle at 80% 20%, rgba(255, 179, 71, 0.12), transparent 20%),
+    linear-gradient(180deg, #050816 0%, #02040b 100%);
+}
+
+.card {
+  @apply rounded-2xl border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur;
+}
+
+.flow-node {
+  @apply rounded-full border border-orbital/40 bg-white/5 px-4 py-2 text-sm text-slate-100;
+}
+
+.pulse {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(121, 242, 255, 0.0); }
+  50% { transform: scale(1.03); box-shadow: 0 0 28px rgba(121, 242, 255, 0.28); }
+}
