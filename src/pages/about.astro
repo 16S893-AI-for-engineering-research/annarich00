@@ -14,7 +14,7 @@ const photos = [
     span: 'rocket-card md:col-span-1 md:row-span-2 object-[50%_40%]',
   },
   { src: '/images/backpacking.jpg', alt: 'Anna backpacking outdoors', span: 'md:col-span-1' },
-  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event', span: 'md:col-span-1 object-[50%_25%]' },
+  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event', span: 'md:col-span-1 object-[50%_38%]' },
   { src: '/images/surf-anna.jpg', alt: 'Anna surfing', span: 'md:col-span-1' },
   { src: '/images/family.jpg', alt: 'Anna with family', span: 'md:col-span-1' },
 ];
@@ -38,10 +38,9 @@ const photos = [
     <div class="grid gap-4 md:grid-cols-3 md:auto-rows-[180px]">
       {photos.map((photo) => (
         <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
-          <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_25%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
+          <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_38%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
-              <div class="rocket-trail pointer-events-none fixed left-0 top-0 z-40 opacity-0"></div>
               <div class="rocket-whoosh pointer-events-none fixed inset-0 z-30 opacity-0"></div>
               <div class="rocket pointer-events-none fixed left-0 top-0 z-50 text-7xl opacity-0">🚀</div>
               <div class="rocket-end-glow pointer-events-none fixed z-40 opacity-0"></div>
@@ -56,19 +55,6 @@ const photos = [
   </section>
 
   <style>
-    .rocket-trail {
-      width: 340vw;
-      height: 20px;
-      left: -8vw;
-      top: 72vh;
-      background: linear-gradient(90deg, rgba(121, 242, 255, 0), rgba(121, 242, 255, 0.95), rgba(255, 179, 71, 0.95), rgba(121, 242, 255, 0));
-      filter: blur(3px) drop-shadow(0 0 24px rgba(121, 242, 255, 0.95));
-      transform-origin: left center;
-      transform: rotate(-8deg) scaleX(0.02);
-      clip-path: polygon(0 35%, 100% 0, 100% 65%, 0 100%);
-      pointer-events: none;
-    }
-
     .rocket-whoosh {
       background:
         radial-gradient(circle at 20% 80%, rgba(121, 242, 255, 0.16), transparent 26%),
@@ -98,10 +84,6 @@ const photos = [
       pointer-events: none;
     }
 
-    .photo-card:hover .rocket-trail {
-      animation: launchTrail 2.4s ease-out forwards;
-    }
-
     .photo-card:hover .rocket-whoosh {
       animation: pageWhoosh 2.4s ease-out forwards;
     }
@@ -114,12 +96,6 @@ const photos = [
       animation: endGlow 2.4s ease-out forwards;
     }
 
-    @keyframes launchTrail {
-      0% { opacity: 0; transform: rotate(-8deg) scaleX(0.02); }
-      10% { opacity: 1; }
-      100% { opacity: 0; transform: rotate(-8deg) scaleX(1); }
-    }
-
     @keyframes pageWhoosh {
       0% { opacity: 0; }
       12% { opacity: 1; }
@@ -130,7 +106,8 @@ const photos = [
     @keyframes rocketAcross {
       0% { opacity: 0; transform: translate(0, 0) scale(1.1) rotate(-10deg); }
       8% { opacity: 1; }
-      100% { opacity: 0; transform: translate(calc(100vw + 18vw), calc(-84vh)) scale(2.2) rotate(18deg); }
+      70% { opacity: 1; }
+      100% { opacity: 1; transform: translate(42vw, -104vh) scale(2.2) rotate(18deg); }
     }
 
     @keyframes endGlow {
