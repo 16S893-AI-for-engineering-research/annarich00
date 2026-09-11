@@ -23,12 +23,12 @@ const photos = [
 <BaseLayout title="About | Anna Ford-Richards" description="Background, research interests, and project motivation.">
   <section class="space-y-8">
     <div class="space-y-4">
-      <h1 class="text-4xl font-bold">About Anna</h1>
+      <h1 class="text-4xl font-bold">About Me</h1>
       <p class="max-w-3xl text-slate-300">
-        Anna Ford-Richards is a Space Force fellow focused on cislunar operations, orbital analysis, and how agents can support research and engineering workflows. Her time as a Space Force engineer at Vandenberg gave her firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
+        I am a Space Force fellow focused on cislunar operations, orbital analysis, and how agents can support research and engineering workflows. My time as a Space Force engineer at Vandenberg gave me firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
       </p>
       <p class="max-w-3xl text-slate-300">
-        She took on this project because she sees a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, Anna loves backpacking, hiking, and just about any outdoor sport, and she brings the same curiosity and energy to research that she does to time outdoors. Faith and family are deeply important to her, and she and her husband were active in a wonderful church community in California where they helped with kids' church. She is also, proudly, a chocolate lover.
+        I took on this project because I see a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, I love backpacking, hiking, and just about any outdoor sport, and I bring the same curiosity and energy to research that I do to time outdoors. Faith and family are deeply important to me, and my husband and I were active in a wonderful church community in California where we helped with kids' church. I am also, proudly, a chocolate lover.
       </p>
       <p class="max-w-3xl text-orbital/90">
         Hover over the rocket photo to see where ideas launch.
@@ -41,21 +41,20 @@ const photos = [
           <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110" />
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
-              <div class="launch-trail pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"></div>
-              <div class="launch-rocket pointer-events-none absolute bottom-3 left-3 text-2xl opacity-0 transition duration-300 group-hover:opacity-100">🚀</div>
-              <div class="pointer-events-none absolute inset-x-4 bottom-4 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
+              <div class="rocket-launch pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"></div>
+              <div class="rocket pointer-events-none absolute bottom-3 left-3 text-2xl opacity-0 transition duration-300 group-hover:opacity-100">🚀</div>
+              <div class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
                 Hover here — watch the rocket launch from the lower left to the upper right.
               </div>
             </>
           )}
-          <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-sm text-white/90">{photo.alt}</figcaption>
         </figure>
       ))}
     </div>
   </section>
 
   <style>
-    .launch-trail {
+    .rocket-launch {
       background:
         radial-gradient(circle at 12% 82%, rgba(121, 242, 255, 0.95), transparent 8%),
         linear-gradient(40deg, transparent 44%, rgba(121, 242, 255, 0.55) 49%, rgba(255, 179, 71, 0.65) 52%, transparent 58%);
@@ -64,8 +63,13 @@ const photos = [
       transform-origin: bottom left;
     }
 
-    .launch-rocket {
+    .rocket {
       animation: rocketFly 1.4s ease-out forwards;
+    }
+
+    .photo-card:hover .rocket-launch,
+    .photo-card:hover .rocket {
+      animation-play-state: running;
     }
 
     @keyframes launchSweep {
