@@ -6,15 +6,15 @@ const photos = [
   {
     src: '/images/wedding-charlie.jpg',
     alt: 'Anna and Charlie at a wedding',
-    span: 'md:col-span-2 md:row-span-2',
+    span: 'md:col-span-2 md:row-span-2 object-[50%_35%]',
   },
   {
     src: '/images/ULArocket-photo.jpg',
     alt: 'Anna near a ULA rocket',
-    span: 'rocket-card md:col-span-1 md:row-span-2',
+    span: 'rocket-card md:col-span-1 md:row-span-2 object-[50%_40%]',
   },
   { src: '/images/backpacking.jpg', alt: 'Anna backpacking outdoors', span: 'md:col-span-1' },
-  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event', span: 'md:col-span-1' },
+  { src: '/images/faith.jpg', alt: 'Anna at church or a faith event', span: 'md:col-span-1 object-[50%_25%]' },
   { src: '/images/surf-anna.jpg', alt: 'Anna surfing', span: 'md:col-span-1' },
   { src: '/images/family.jpg', alt: 'Anna with family', span: 'md:col-span-1' },
 ];
@@ -28,7 +28,7 @@ const photos = [
         I am a Space Force fellow focused on cislunar operations, orbital analysis, and how agents can support research and engineering workflows. My time as a Space Force engineer at Vandenberg gave me firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
       </p>
       <p class="max-w-3xl text-slate-300">
-        I took on this project because I see a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, I love backpacking, hiking, and just about any outdoor sport, and I bring the same curiosity and energy to research that I do to time outdoors. Faith and family are deeply important to me, and my husband and I were active in a wonderful church community in California where we helped with kids' church. I am also, proudly, a chocolate lover.
+        I chose this project with my advisor because I see a real gap between what agents can say about rendezvous and what operators can actually use. Outside of the classroom, I love backpacking, hiking, and just about any outdoor sport, and I bring the same curiosity and energy to research that I do to time outdoors. Faith and family are deeply important to me, and my husband and I were active in a wonderful church community in California where we helped with kids' church. I am also, proudly, a chocolate lover.
       </p>
       <p class="max-w-3xl text-orbital/90">
         Hover over the rocket photo to see where ideas launch.
@@ -38,7 +38,7 @@ const photos = [
     <div class="grid gap-4 md:grid-cols-3 md:auto-rows-[180px]">
       {photos.map((photo) => (
         <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
-          <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110" />
+          <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_25%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
               <div class="rocket-trail pointer-events-none fixed left-0 top-0 z-40 opacity-0"></div>
@@ -57,14 +57,14 @@ const photos = [
 
   <style>
     .rocket-trail {
-      width: 300vw;
-      height: 18px;
-      left: -50vw;
-      top: 58vh;
+      width: 340vw;
+      height: 20px;
+      left: -8vw;
+      top: 72vh;
       background: linear-gradient(90deg, rgba(121, 242, 255, 0), rgba(121, 242, 255, 0.95), rgba(255, 179, 71, 0.95), rgba(121, 242, 255, 0));
       filter: blur(3px) drop-shadow(0 0 24px rgba(121, 242, 255, 0.95));
       transform-origin: left center;
-      transform: rotate(-30deg) scaleX(0.02);
+      transform: rotate(-8deg) scaleX(0.02);
       clip-path: polygon(0 35%, 100% 0, 100% 65%, 0 100%);
       pointer-events: none;
     }
@@ -79,8 +79,8 @@ const photos = [
     }
 
     .rocket {
-      left: -8vw;
-      top: 60vh;
+      left: -10vw;
+      top: 76vh;
       filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.9)) drop-shadow(0 0 30px rgba(121, 242, 255, 0.7));
       transform-origin: center;
       text-shadow: 0 0 18px rgba(255, 179, 71, 0.65);
@@ -88,10 +88,10 @@ const photos = [
     }
 
     .rocket-end-glow {
-      width: 140px;
-      height: 140px;
-      right: 4vw;
-      top: 14vh;
+      width: 160px;
+      height: 160px;
+      right: -20px;
+      top: -20px;
       border-radius: 9999px;
       background: radial-gradient(circle, rgba(255, 179, 71, 0.55), rgba(121, 242, 255, 0.18), transparent 70%);
       filter: blur(8px);
@@ -99,25 +99,25 @@ const photos = [
     }
 
     .photo-card:hover .rocket-trail {
-      animation: launchTrail 2.2s ease-out forwards;
+      animation: launchTrail 2.4s ease-out forwards;
     }
 
     .photo-card:hover .rocket-whoosh {
-      animation: pageWhoosh 2.2s ease-out forwards;
+      animation: pageWhoosh 2.4s ease-out forwards;
     }
 
     .photo-card:hover .rocket {
-      animation: rocketAcross 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: rocketAcross 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
     .photo-card:hover .rocket-end-glow {
-      animation: endGlow 2.2s ease-out forwards;
+      animation: endGlow 2.4s ease-out forwards;
     }
 
     @keyframes launchTrail {
-      0% { opacity: 0; transform: rotate(-30deg) scaleX(0.02); }
+      0% { opacity: 0; transform: rotate(-8deg) scaleX(0.02); }
       10% { opacity: 1; }
-      100% { opacity: 0; transform: rotate(-30deg) scaleX(1); }
+      100% { opacity: 0; transform: rotate(-8deg) scaleX(1); }
     }
 
     @keyframes pageWhoosh {
@@ -128,9 +128,9 @@ const photos = [
     }
 
     @keyframes rocketAcross {
-      0% { opacity: 0; transform: translate(0, 0) scale(1.1) rotate(-20deg); }
+      0% { opacity: 0; transform: translate(0, 0) scale(1.1) rotate(-10deg); }
       8% { opacity: 1; }
-      100% { opacity: 0; transform: translate(calc(100vw - 8vw), calc(-46vh)) scale(1.9) rotate(22deg); }
+      100% { opacity: 0; transform: translate(calc(100vw + 18vw), calc(-84vh)) scale(2.2) rotate(18deg); }
     }
 
     @keyframes endGlow {
