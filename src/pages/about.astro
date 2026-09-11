@@ -41,8 +41,9 @@ const photos = [
           <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110" />
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
-              <div class="rocket-launch pointer-events-none fixed left-0 top-0 z-50 opacity-0"></div>
-              <div class="rocket pointer-events-none fixed left-0 top-0 z-[60] text-6xl opacity-0">🚀</div>
+              <div class="rocket-trail pointer-events-none fixed left-0 top-0 z-40 opacity-0"></div>
+              <div class="rocket-whoosh pointer-events-none fixed inset-0 z-30 opacity-0"></div>
+              <div class="rocket pointer-events-none fixed left-0 top-0 z-50 text-7xl opacity-0">🚀</div>
               <div class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
                 Hover here — watch the rocket launch across the whole page.
               </div>
@@ -54,42 +55,62 @@ const photos = [
   </section>
 
   <style>
-    .rocket-launch {
-      width: 180vw;
-      height: 180vw;
-      transform: translate(-12vw, 55vh) rotate(-35deg) scale(0.2);
-      transform-origin: center;
+    .rocket-trail {
+      width: 200vw;
+      height: 14px;
+      background: linear-gradient(90deg, rgba(121, 242, 255, 0), rgba(121, 242, 255, 0.95), rgba(255, 179, 71, 0.95), rgba(121, 242, 255, 0));
+      filter: blur(2px) drop-shadow(0 0 20px rgba(121, 242, 255, 0.8));
+      transform-origin: left center;
+      transform: translate(-20vw, 68vh) rotate(-34deg) scaleX(0.12);
+      clip-path: polygon(0 35%, 100% 0, 100% 65%, 0 100%);
+      pointer-events: none;
+    }
+
+    .rocket-whoosh {
       background:
-        radial-gradient(circle at 8% 88%, rgba(255, 255, 255, 0.95), transparent 7%),
-        radial-gradient(circle at 18% 82%, rgba(121, 242, 255, 0.95), transparent 10%),
-        linear-gradient(35deg, transparent 44%, rgba(121, 242, 255, 0.6) 48%, rgba(255, 179, 71, 0.8) 52%, transparent 58%);
-      clip-path: polygon(0 100%, 0 100%, 100% 0, 100% 0);
+        radial-gradient(circle at 20% 80%, rgba(121, 242, 255, 0.12), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(255, 179, 71, 0.10), transparent 18%),
+        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.06), rgba(5, 8, 22, 0.0));
+      mix-blend-mode: screen;
       pointer-events: none;
     }
 
     .rocket {
-      transform: translate(0, 0) rotate(-10deg);
-      filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.7));
+      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.9)) drop-shadow(0 0 24px rgba(121, 242, 255, 0.55));
+      transform-origin: center;
+      text-shadow: 0 0 18px rgba(255, 179, 71, 0.65);
+      pointer-events: none;
     }
 
-    .photo-card:hover .rocket-launch {
-      animation: launchAcross 1.8s ease-out forwards;
+    .photo-card:hover .rocket-trail {
+      animation: launchTrail 2.1s ease-out forwards;
+    }
+
+    .photo-card:hover .rocket-whoosh {
+      animation: pageWhoosh 2.1s ease-out forwards;
     }
 
     .photo-card:hover .rocket {
-      animation: rocketFly 1.8s ease-out forwards;
+      animation: rocketAcross 2.1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     }
 
-    @keyframes launchAcross {
-      0% { opacity: 0; transform: translate(-12vw, 55vh) rotate(-35deg) scale(0.18); }
-      8% { opacity: 1; }
-      100% { opacity: 0; transform: translate(22vw, -30vh) rotate(-35deg) scale(0.18); }
+    @keyframes launchTrail {
+      0% { opacity: 0; transform: translate(-20vw, 68vh) rotate(-34deg) scaleX(0.05); }
+      10% { opacity: 1; }
+      100% { opacity: 0; transform: translate(24vw, -26vh) rotate(-34deg) scaleX(1); }
     }
 
-    @keyframes rocketFly {
-      0% { opacity: 0; transform: translate(-10vw, 56vh) scale(1) rotate(-12deg); }
+    @keyframes pageWhoosh {
+      0% { opacity: 0; }
+      12% { opacity: 1; }
+      45% { opacity: 0.85; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes rocketAcross {
+      0% { opacity: 0; transform: translate(-10vw, 58vh) scale(1.1) rotate(-20deg); }
       8% { opacity: 1; }
-      100% { opacity: 0; transform: translate(24vw, -28vh) scale(1.35) rotate(18deg); }
+      100% { opacity: 0; transform: translate(27vw, -30vh) scale(1.8) rotate(22deg); }
     }
   </style>
 </BaseLayout>
