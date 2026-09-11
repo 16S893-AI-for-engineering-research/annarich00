@@ -26,7 +26,7 @@ https://16s893-ai-for-engineering-research.github.io/annarich00/
 - Source-of-truth content notes live in `docs/content-reference.md`
 
 ## Photos
-Place personal photos in `public/images/` and reference them with `/agent_retry/images/<file>` in production or use `resolvePath()` for internal assets.
+Place personal photos in `public/images/` and reference them with `/annarich00/images/<file>` in production or use `resolvePath()` for internal assets.
 
 ## Deployment
 Push to `main` and GitHub Actions will build and deploy to GitHub Pages.
