@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import '../styles/globals.css';
 
 const { title, description } = Astro.props;
+const fullTitle = title ? `${title} | Anna Ford-Richards` : 'Anna Ford-Richards';
 ---
 
 <html lang="en">
@@ -11,7 +12,7 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <title>{fullTitle}</title>
   </head>
   <body>
     <Header />
