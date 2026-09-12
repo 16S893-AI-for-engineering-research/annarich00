@@ -56,66 +56,88 @@ const photos = [
   </section>
 
   <div class="rocket-rumble pointer-events-none fixed inset-0 z-[70] opacity-0"></div>
-  <div class="rocket-whoosh pointer-events-none fixed inset-0 z-30 opacity-0"></div>
-  <div class="rocket-launch pointer-events-none fixed left-1/2 top-full z-[80] opacity-0"></div>
-  <div class="rocket-trail pointer-events-none fixed left-1/2 top-full z-[75] opacity-0"></div>
+  <div class="rocket-whoosh pointer-events-none fixed inset-0 z-[80] opacity-0"></div>
+  <div class="rocket-launch pointer-events-none fixed left-1/2 top-[95vh] z-[90] opacity-0"></div>
+  <div class="rocket-trail pointer-events-none fixed left-1/2 top-[95vh] z-[85] opacity-0"></div>
 
   <script is:inline>
     const stage = document.querySelector('.about-stage');
     const trigger = document.querySelector('[data-rocket-trigger]');
     if (stage && trigger) {
       const stopRumble = () => stage.classList.remove('is-rumbling');
-      trigger.addEventListener('click', (event) => {
-        event.preventDefault();
+      const startLaunch = () => {
         stage.classList.remove('is-rumbling');
         void stage.offsetWidth;
         stage.classList.add('is-rumbling');
-        window.setTimeout(stopRumble, 5000);
+        window.clearTimeout(window.__rocketTimeout);
+        window.__rocketTimeout = window.setTimeout(stopRumble, 5000);
+      };
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        startLaunch();
       });
-      window.setTimeout(stopRumble, 5000);
     }
   </script>
 
   <style>
-    .rocket-rumble {
-      background: linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.12), rgba(5, 8, 22, 0));
-      mix-blend-mode: screen;
+    .about-stage {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .rocket-trigger {
+      display: block;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .rocket-rumble,
+    .rocket-whoosh,
+    .rocket-launch,
+    .rocket-trail {
+      will-change: transform, opacity;
       pointer-events: none;
+    }
+
+    .rocket-rumble {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(121, 242, 255, 0.12), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(255, 179, 71, 0.12), transparent 18%);
+      mix-blend-mode: screen;
     }
 
     .rocket-whoosh {
       background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.34), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.14), rgba(5, 8, 22, 0));
+        radial-gradient(circle at 50% 88%, rgba(121, 242, 255, 0.28), transparent 18%),
+        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.12), rgba(5, 8, 22, 0));
       mix-blend-mode: screen;
-      pointer-events: none;
     }
 
     .rocket-launch {
-      width: 60px;
-      height: 180px;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%) translateY(0);
-      opacity: 0;
+      width: 72px;
+      height: 210px;
+      transform: translateX(-50%);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(205, 214, 228, 0.96) 22%, rgba(138, 150, 170, 0.94) 64%, rgba(75, 86, 103, 0.98));
-      clip-path: polygon(50% 0%, 68% 10%, 74% 18%, 74% 70%, 100% 85%, 100% 100%, 0 100%, 0 85%, 26% 70%, 26% 18%, 32% 10%);
-      filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.55)) drop-shadow(0 0 28px rgba(121, 242, 255, 0.5));
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(212, 220, 232, 0.96) 18%, rgba(149, 160, 178, 0.96) 58%, rgba(73, 84, 100, 0.98));
+      clip-path: polygon(50% 0%, 63% 10%, 70% 18%, 76% 28%, 76% 70%, 100% 82%, 100% 100%, 0 100%, 0 82%, 24% 70%, 24% 28%, 30% 18%, 37% 10%);
+      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.55)) drop-shadow(0 0 26px rgba(121, 242, 255, 0.45));
       transform-origin: center bottom;
+      opacity: 0;
     }
 
     .rocket-launch::before {
       content: '';
       position: absolute;
       left: 50%;
-      top: -22px;
+      top: -24px;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 34px solid rgba(255, 255, 255, 0.98);
+      border-left: 22px solid transparent;
+      border-right: 22px solid transparent;
+      border-bottom: 38px solid rgba(255, 255, 255, 0.98);
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.28));
     }
 
@@ -123,30 +145,24 @@ const photos = [
       content: '';
       position: absolute;
       left: 50%;
-      bottom: -82px;
+      bottom: -92px;
       transform: translateX(-50%);
-      width: 42px;
-      height: 96px;
-      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 104, 37, 0.88) 42%, rgba(121, 242, 255, 0.16) 72%, transparent 78%);
+      width: 46px;
+      height: 110px;
+      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 104, 37, 0.92) 40%, rgba(121, 242, 255, 0.18) 72%, transparent 80%);
       clip-path: polygon(50% 0%, 64% 16%, 78% 40%, 88% 66%, 50% 100%, 12% 66%, 22% 40%, 36% 16%);
-      filter: blur(2px);
+      filter: blur(3px);
       opacity: 0.98;
     }
 
     .rocket-trail {
-      width: 26px;
-      height: 92vh;
+      width: 34px;
+      height: 100vh;
       left: 50%;
-      bottom: -14vh;
       transform: translateX(-50%);
+      background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.78), rgba(121, 242, 255, 0.18), rgba(5, 8, 22, 0));
+      filter: blur(22px);
       opacity: 0;
-      background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.78), rgba(121, 242, 255, 0.22), rgba(5, 8, 22, 0));
-      filter: blur(18px);
-    }
-
-    .about-stage {
-      position: relative;
-      isolation: isolate;
     }
 
     .about-stage::before {
@@ -157,72 +173,69 @@ const photos = [
       pointer-events: none;
       opacity: 0;
       background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.28), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.1), rgba(5, 8, 22, 0));
+        radial-gradient(circle at 50% 50%, rgba(121, 242, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 50% 92%, rgba(255, 179, 71, 0.18), transparent 16%);
     }
 
     .about-stage.is-rumbling::before {
-      animation: pageRumble 2.8s linear forwards;
+      animation: pageRumble 5s linear forwards;
     }
 
     .about-stage.is-rumbling .space-shake,
     .about-stage.is-rumbling .space-shake * {
-      animation: contentShake 0.22s linear infinite;
+      animation: contentShake 0.18s linear infinite;
       will-change: transform;
     }
 
     .about-stage.is-rumbling .rocket-rumble {
-      animation: pageRumble 2.8s linear forwards;
+      animation: pageRumble 5s linear forwards;
     }
 
     .about-stage.is-rumbling .rocket-whoosh {
-      animation: pageWhoosh 2.8s ease-out forwards;
+      animation: pageWhoosh 4s ease-out forwards;
     }
 
     .about-stage.is-rumbling .rocket-launch {
-      animation: rocketLaunch 2.8s cubic-bezier(0.18, 0.8, 0.2, 1) forwards;
+      animation: rocketLaunch 4s cubic-bezier(0.16, 0.84, 0.2, 1) forwards;
     }
 
     .about-stage.is-rumbling .rocket-trail {
-      animation: trailGlow 2.8s ease-out forwards;
+      animation: trailGlow 4s ease-out forwards;
     }
 
     @keyframes pageRumble {
       0% { opacity: 0; }
-      8% { opacity: 0.8; }
-      24% { opacity: 1; }
+      8% { opacity: 0.75; }
+      18% { opacity: 1; }
       100% { opacity: 0; }
     }
 
     @keyframes pageWhoosh {
       0% { opacity: 0; }
       12% { opacity: 0.85; }
-      40% { opacity: 1; }
       100% { opacity: 0; }
     }
 
     @keyframes rocketLaunch {
-      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.72); }
-      8% { opacity: 1; transform: translateX(-50%) translateY(-4vh) scale(0.76); }
-      20% { transform: translateX(-50%) translateY(-18vh) scale(0.86); }
-      38% { transform: translateX(-50%) translateY(-40vh) scale(0.98); }
-      58% { transform: translateX(-50%) translateY(-68vh) scale(1.08); }
-      78% { transform: translateX(-50%) translateY(-98vh) scale(1.15); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(-124vh) scale(1.18); }
+      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.7); }
+      8% { opacity: 1; transform: translateX(-50%) translateY(-8vh) scale(0.78); }
+      22% { transform: translateX(-50%) translateY(-22vh) scale(0.9); }
+      45% { transform: translateX(-50%) translateY(-52vh) scale(1.02); }
+      70% { transform: translateX(-50%) translateY(-82vh) scale(1.1); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(-130vh) scale(1.16); }
     }
 
     @keyframes trailGlow {
       0% { opacity: 0; }
-      10% { opacity: 0.95; }
-      55% { opacity: 0.8; }
+      10% { opacity: 0.9; }
       100% { opacity: 0; }
     }
 
     @keyframes contentShake {
       0% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-5px, 4px) rotate(-0.25deg); }
+      20% { transform: translate(-6px, 4px) rotate(-0.25deg); }
       40% { transform: translate(6px, -4px) rotate(0.25deg); }
-      60% { transform: translate(-6px, 5px) rotate(-0.2deg); }
+      60% { transform: translate(-5px, 5px) rotate(-0.2deg); }
       80% { transform: translate(5px, -3px) rotate(0.2deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
