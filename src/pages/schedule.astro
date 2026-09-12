@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Semester Schedule" description="Proposed semester plan for the AI-assisted trajectory design project.">
+  <script is:inline>
+    const PASSWORD = 'schedule me';
+    window.addEventListener('DOMContentLoaded', () => {
+      const gate = document.querySelector('[data-gate]');
+      const form = document.querySelector('[data-password-form]');
+      const input = document.querySelector('[data-password-input]');
+      const error = document.querySelector('[data-password-error]');
+      const content = document.querySelector('[data-protected-content]');
+
+      if (!gate || !form || !input || !error || !content) return;
+
+      const unlocked = sessionStorage.getItem('schedule-unlocked') === 'true';
+      if (unlocked) {
+        gate.classList.add('hidden');
+        content.classList.remove('hidden');
+      }
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (input.value.trim().toLowerCase() === PASSWORD) {
+          sessionStorage.setItem('schedule-unlocked', 'true');
+          gate.classList.add('hidden');
+          content.classList.remove('hidden');
+          error.textContent = '';
+        } else {
+          error.textContent = 'Incorrect password. Try again.';
+        }
+      });
+    });
+  </script>
+
+  <section class="space-y-8">
+    <div class="space-y-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-orbital">Private planning page</p>
+      <h1 class="text-4xl font-bold">Semester Schedule</h1>
+      <p class="max-w-3xl text-slate-300">
+        Enter the password to view the proposed semester plan.
+      </p>
+    </div>
+
+    <div data-gate class="card max-w-xl space-y-4">
+      <h2 class="text-2xl font-semibold">Password required</h2>
+      <form data-password-form class="space-y-4">
+        <label class="block text-sm text-slate-300" for="schedule-password">Type the password to continue</label>
+        <input id="schedule-password" data-password-input type="password" class="w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none ring-0 placeholder:text-slate-500 focus:border-orbital" placeholder="Enter password" />
+        <button class="rounded-full bg-orbital px-5 py-3 font-semibold text-slate-950 transition hover:opacity-90" type="submit">Unlock schedule</button>
+        <p data-password-error class="text-sm text-thruster"></p>
+      </form>
+    </div>
+
+    <div data-protected-content class="hidden space-y-8">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 1</h2>
+          <p class="text-slate-300">Finalize scope, lock the one-pager, and define benchmark sources and success criteria.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 2</h2>
+          <p class="text-slate-300">Build the first benchmark problems and capture expected outputs or reference solutions.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 3</h2>
+          <p class="text-slate-300">Run baseline LLM tests and record failure modes, confusion points, and helpful outputs.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 4</h2>
+          <p class="text-slate-300">Set up GMAT or Python verification workflows and compare AI output against known results.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 5</h2>
+          <p class="text-slate-300">Compare AI+GMAT against GMAT-only to see whether the model improves speed or clarity.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Week 6</h2>
+          <p class="text-slate-300">Refine the scoring rubric and improve prompts, benchmark descriptions, or validation steps.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Weeks 7–8</h2>
+          <p class="text-slate-300">Present progress, expand to additional benchmark cases, and document what changed after feedback.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Weeks 9–10</h2>
+          <p class="text-slate-300">Add harder cases such as formation reconfiguration or low-thrust transfer problems.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Weeks 11–12</h2>
+          <p class="text-slate-300">Synthesize findings into patterns of where LLMs help, where they fail, and where human oversight remains necessary.</p>
+        </div>
+        <div class="card space-y-3">
+          <h2 class="text-2xl font-semibold">Weeks 13–14</h2>
+          <p class="text-slate-300">Polish the portfolio, freeze the repo, and prepare the final presentation and discussion points.</p>
+        </div>
+      </div>
+
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Weekly rhythm</h2>
+        <ul class="space-y-2 text-slate-300">
+          <li>Early week: run tests or extend the benchmark set</li>
+          <li>Midweek: validate results with GMAT or Python</li>
+          <li>Late week: update the site and log what worked or failed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
