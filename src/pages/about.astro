@@ -24,40 +24,42 @@ const photos = [
   <section class="about-stage space-y-8">
     <div class="space-shake space-y-8">
       <div class="space-y-4">
-      <h1 class="text-4xl font-bold">Welcome! I&apos;m Anna</h1>
-      <p class="max-w-3xl text-slate-300">
-        I am a Space Force fellow focused on cislunar operations, orbital analysis, and AI-assisted trajectory design for space mission planning. My time as a Space Force engineer at Vandenberg gave me firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
-      </p>
-      <p class="max-w-3xl text-slate-300">
-        I chose this project with my advisor because I see a real gap between what large language models can say about trajectory design and what active-duty operators and engineers can actually use. Outside of the classroom, my husband, Charlie, and I love backpacking, surfing, and just about any outdoor sport! We got married in April of this year and I have a photo of that below along with some others. I hope to bring the same curiosity and energy to research here at MIT. Faith and family are deeply important to me, and Charlie and I were active in a wonderful church community in California where we helped with kids' church. 
-      </p>
-      <p class="max-w-3xl text-orbital/90">
-        Click my rocket photo for a fun surprise ;) 
-      </p>
+        <h1 class="text-4xl font-bold">Welcome! I&apos;m Anna</h1>
+        <p class="max-w-3xl text-slate-300">
+          I am a Space Force fellow focused on cislunar operations, orbital analysis, and AI-assisted trajectory design for space mission planning. My time as a Space Force engineer at Vandenberg gave me firsthand experience working with launch companies, helping bridge technical requirements, operational coordination, and mission execution.
+        </p>
+        <p class="max-w-3xl text-slate-300">
+          I chose this project with my advisor because I see a real gap between what large language models can say about trajectory design and what active-duty operators and engineers can actually use. Outside of the classroom, my husband, Charlie, and I love backpacking, surfing, and just about any outdoor sport! We got married in April of this year and I have a photo of that below along with some others. I hope to bring the same curiosity and energy to research here at MIT. Faith and family are deeply important to me, and Charlie and I were active in a wonderful church community in California where we helped with kids' church.
+        </p>
+        <p class="max-w-3xl text-orbital/90">
+          Click my rocket photo for a fun surprise ;)
+        </p>
       </div>
 
       <div class="grid gap-4 md:grid-cols-3 md:auto-rows-[180px]">
-      {photos.map((photo) => (
-        <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
-          <button type="button" class="rocket-trigger h-full w-full text-left" aria-label="Launch rocket animation" data-rocket-trigger>
-            <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_38%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
-          </button>
-          {photo.src === '/images/ULArocket-photo.jpg' && (
-            <>
-              <div class="rocket-rumble pointer-events-none fixed inset-0 z-[70] opacity-0"></div>
-              <div class="rocket-whoosh pointer-events-none fixed inset-0 z-30 opacity-0"></div>
-              <div class="rocket-launch pointer-events-none fixed left-1/2 top-full z-[80] opacity-0"></div>
-              <div class="rocket-trail pointer-events-none fixed left-1/2 top-full z-[75] opacity-0"></div>
-              <div class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/50 px-3 py-2 text-xs text-white/85 opacity-0 backdrop-blur transition duration-300 group-hover:opacity-100">
-                Click here — watch the rocket launch across the whole page.
-              </div>
-            </>
-          )}
-        </figure>
-      ))}
-    </div>
+        {photos.map((photo) => (
+          <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
+            {photo.src === '/images/ULArocket-photo.jpg' ? (
+              <button type="button" class="rocket-trigger h-full w-full text-left" aria-label="Launch rocket animation" data-rocket-trigger>
+                <img src={resolvePath(photo.src)} alt={photo.alt} class="h-full w-full object-cover object-[50%_40%]" />
+                <span class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/60 px-3 py-2 text-xs text-white/90 backdrop-blur">
+                  Click to launch
+                </span>
+              </button>
+            ) : (
+              <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_38%]' : ''}`} />
+            )}
+          </figure>
+        ))}
+      </div>
     </div>
   </section>
+
+  <div class="rocket-rumble pointer-events-none fixed inset-0 z-[70] opacity-0"></div>
+  <div class="rocket-whoosh pointer-events-none fixed inset-0 z-30 opacity-0"></div>
+  <div class="rocket-launch pointer-events-none fixed left-1/2 top-full z-[80] opacity-0"></div>
+  <div class="rocket-trail pointer-events-none fixed left-1/2 top-full z-[75] opacity-0"></div>
+
   <script is:inline>
     const stage = document.querySelector('.about-stage');
     const trigger = document.querySelector('[data-rocket-trigger]');
@@ -73,71 +75,70 @@ const photos = [
 
   <style>
     .rocket-rumble {
-      background: linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.08), rgba(5, 8, 22, 0.0));
+      background: linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.12), rgba(5, 8, 22, 0));
       mix-blend-mode: screen;
       pointer-events: none;
-      will-change: transform, opacity;
     }
 
     .rocket-whoosh {
       background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.3), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.1), rgba(5, 8, 22, 0.0));
+        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.34), transparent 18%),
+        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.14), rgba(5, 8, 22, 0));
       mix-blend-mode: screen;
       pointer-events: none;
     }
 
     .rocket-launch {
+      width: 60px;
+      height: 180px;
       left: 50%;
-      bottom: -16vh;
-      width: 54px;
-      height: 162px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(207, 214, 225, 0.92) 24%, rgba(144, 157, 177, 0.92) 65%, rgba(82, 92, 108, 0.95)),
-        radial-gradient(circle at 50% 24%, rgba(121, 242, 255, 0.6), transparent 26%);
-      clip-path: polygon(50% 0%, 74% 12%, 74% 68%, 100% 84%, 100% 100%, 0 100%, 0 84%, 26% 68%, 26% 12%);
-      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.65)) drop-shadow(0 0 22px rgba(121, 242, 255, 0.5));
-      transform-origin: center bottom;
+      bottom: -18vh;
+      transform: translateX(-50%);
       opacity: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(205, 214, 228, 0.96) 22%, rgba(138, 150, 170, 0.94) 64%, rgba(75, 86, 103, 0.98));
+      clip-path: polygon(50% 0%, 68% 10%, 74% 18%, 74% 70%, 100% 85%, 100% 100%, 0 100%, 0 85%, 26% 70%, 26% 18%, 32% 10%);
+      filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.55)) drop-shadow(0 0 28px rgba(121, 242, 255, 0.5));
+      transform-origin: center bottom;
     }
 
     .rocket-launch::before {
       content: '';
       position: absolute;
       left: 50%;
-      top: -18px;
+      top: -22px;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 30px solid rgba(255, 255, 255, 0.96);
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 34px solid rgba(255, 255, 255, 0.98);
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.28));
     }
 
     .rocket-launch::after {
       content: '';
       position: absolute;
       left: 50%;
-      bottom: -68px;
+      bottom: -82px;
       transform: translateX(-50%);
-      width: 36px;
-      height: 84px;
-      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 108, 39, 0.8) 38%, rgba(121, 242, 255, 0.16) 70%, transparent 78%);
-      clip-path: polygon(50% 0%, 66% 18%, 78% 42%, 88% 66%, 50% 100%, 12% 66%, 22% 42%, 34% 18%);
+      width: 42px;
+      height: 96px;
+      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 104, 37, 0.88) 42%, rgba(121, 242, 255, 0.16) 72%, transparent 78%);
+      clip-path: polygon(50% 0%, 64% 16%, 78% 40%, 88% 66%, 50% 100%, 12% 66%, 22% 40%, 36% 16%);
       filter: blur(2px);
       opacity: 0.98;
     }
 
     .rocket-trail {
+      width: 26px;
+      height: 92vh;
       left: 50%;
-      bottom: -12vh;
-      width: 22px;
-      height: 88vh;
-      background: linear-gradient(180deg, rgba(255, 179, 71, 0.0), rgba(255, 179, 71, 0.72), rgba(121, 242, 255, 0.22), rgba(5, 8, 22, 0.0));
-      filter: blur(18px);
-      opacity: 0;
+      bottom: -14vh;
       transform: translateX(-50%);
+      opacity: 0;
+      background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.78), rgba(121, 242, 255, 0.22), rgba(5, 8, 22, 0));
+      filter: blur(18px);
     }
 
     .about-stage {
@@ -153,172 +154,8 @@ const photos = [
       pointer-events: none;
       opacity: 0;
       background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.25), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.08), rgba(5, 8, 22, 0.0));
-    }
-
-    .about-stage:hover::before {
-      animation: pageRumble 2.8s linear forwards;
-    }
-
-    .about-stage:hover .space-shake,
-    .about-stage:hover .space-shake * {
-      animation: contentShake 0.38s linear infinite;
-      will-change: transform;
-    }
-
-    .rocket-rumble {
-      background: linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.08), rgba(5, 8, 22, 0.0));
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .rocket-whoosh {
-      background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.3), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.1), rgba(5, 8, 22, 0.0));
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .rocket-launch {
-      left: 50%;
-      bottom: -16vh;
-      width: 54px;
-      height: 162px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(207, 214, 225, 0.92) 24%, rgba(144, 157, 177, 0.92) 65%, rgba(82, 92, 108, 0.95)),
-        radial-gradient(circle at 50% 24%, rgba(121, 242, 255, 0.6), transparent 26%);
-      clip-path: polygon(50% 0%, 74% 12%, 74% 68%, 100% 84%, 100% 100%, 0 100%, 0 84%, 26% 68%, 26% 12%);
-      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.65)) drop-shadow(0 0 22px rgba(121, 242, 255, 0.5));
-      transform-origin: center bottom;
-      opacity: 0;
-    }
-
-    .rocket-launch::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: -18px;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 30px solid rgba(255, 255, 255, 0.96);
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
-    }
-
-    .rocket-launch::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -68px;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 84px;
-      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 108, 39, 0.8) 38%, rgba(121, 242, 255, 0.16) 70%, transparent 78%);
-      clip-path: polygon(50% 0%, 66% 18%, 78% 42%, 88% 66%, 50% 100%, 12% 66%, 22% 42%, 34% 18%);
-      filter: blur(2px);
-      opacity: 0.98;
-    }
-
-    .rocket-trail {
-      left: 50%;
-      bottom: -12vh;
-      width: 22px;
-      height: 88vh;
-      background: linear-gradient(180deg, rgba(255, 179, 71, 0.0), rgba(255, 179, 71, 0.72), rgba(121, 242, 255, 0.22), rgba(5, 8, 22, 0.0));
-      filter: blur(18px);
-      opacity: 0;
-      transform: translateX(-50%);
-    }
-
-    .rocket-trigger {
-      display: block;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .rocket-rumble {
-      background: linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.08), rgba(5, 8, 22, 0.0));
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .rocket-whoosh {
-      background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.3), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.1), rgba(5, 8, 22, 0.0));
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .rocket-launch {
-      left: 50%;
-      bottom: -16vh;
-      width: 54px;
-      height: 162px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(207, 214, 225, 0.92) 24%, rgba(144, 157, 177, 0.92) 65%, rgba(82, 92, 108, 0.95)),
-        radial-gradient(circle at 50% 24%, rgba(121, 242, 255, 0.6), transparent 26%);
-      clip-path: polygon(50% 0%, 74% 12%, 74% 68%, 100% 84%, 100% 100%, 0 100%, 0 84%, 26% 68%, 26% 12%);
-      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.65)) drop-shadow(0 0 22px rgba(121, 242, 255, 0.5));
-      transform-origin: center bottom;
-      opacity: 0;
-    }
-
-    .rocket-launch::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: -18px;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 30px solid rgba(255, 255, 255, 0.96);
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
-    }
-
-    .rocket-launch::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: -68px;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 84px;
-      background: radial-gradient(ellipse at center, rgba(255, 179, 71, 1), rgba(255, 108, 39, 0.8) 38%, rgba(121, 242, 255, 0.16) 70%, transparent 78%);
-      clip-path: polygon(50% 0%, 66% 18%, 78% 42%, 88% 66%, 50% 100%, 12% 66%, 22% 42%, 34% 18%);
-      filter: blur(2px);
-      opacity: 0.98;
-    }
-
-    .rocket-trail {
-      left: 50%;
-      bottom: -12vh;
-      width: 22px;
-      height: 88vh;
-      background: linear-gradient(180deg, rgba(255, 179, 71, 0.0), rgba(255, 179, 71, 0.72), rgba(121, 242, 255, 0.22), rgba(5, 8, 22, 0.0));
-      filter: blur(18px);
-      opacity: 0;
-      transform: translateX(-50%);
-    }
-
-    .about-stage::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 60;
-      pointer-events: none;
-      opacity: 0;
-      background:
-        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.25), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0.0), rgba(121, 242, 255, 0.08), rgba(5, 8, 22, 0.0));
+        radial-gradient(circle at 50% 92%, rgba(121, 242, 255, 0.28), transparent 18%),
+        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.1), rgba(5, 8, 22, 0));
     }
 
     .about-stage.is-rumbling::before {
@@ -327,7 +164,7 @@ const photos = [
 
     .about-stage.is-rumbling .space-shake,
     .about-stage.is-rumbling .space-shake * {
-      animation: contentShake 0.38s linear infinite;
+      animation: contentShake 0.22s linear infinite;
       will-change: transform;
     }
 
@@ -340,7 +177,7 @@ const photos = [
     }
 
     .about-stage.is-rumbling .rocket-launch {
-      animation: rocketLaunch 2.8s linear forwards;
+      animation: rocketLaunch 2.8s cubic-bezier(0.18, 0.8, 0.2, 1) forwards;
     }
 
     .about-stage.is-rumbling .rocket-trail {
@@ -349,41 +186,41 @@ const photos = [
 
     @keyframes pageRumble {
       0% { opacity: 0; }
-      8% { opacity: 0.9; }
+      8% { opacity: 0.8; }
       24% { opacity: 1; }
       100% { opacity: 0; }
     }
 
     @keyframes pageWhoosh {
       0% { opacity: 0; }
-      10% { opacity: 0.8; }
-      35% { opacity: 1; }
+      12% { opacity: 0.85; }
+      40% { opacity: 1; }
       100% { opacity: 0; }
     }
 
     @keyframes rocketLaunch {
-      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.68) rotate(-6deg); }
-      8% { opacity: 1; transform: translateX(-50%) translateY(0) scale(0.72) rotate(-6deg); }
-      18% { transform: translateX(-50%) translateY(-14vh) scale(0.82) rotate(-2deg); }
-      34% { transform: translateX(-50%) translateY(-34vh) scale(0.94) rotate(3deg); }
-      52% { transform: translateX(-50%) translateY(-60vh) scale(1.04) rotate(8deg); }
-      72% { transform: translateX(-50%) translateY(-88vh) scale(1.12) rotate(12deg); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(-118vh) scale(1.18) rotate(16deg); }
+      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.72); }
+      8% { opacity: 1; transform: translateX(-50%) translateY(-4vh) scale(0.76); }
+      20% { transform: translateX(-50%) translateY(-18vh) scale(0.86); }
+      38% { transform: translateX(-50%) translateY(-40vh) scale(0.98); }
+      58% { transform: translateX(-50%) translateY(-68vh) scale(1.08); }
+      78% { transform: translateX(-50%) translateY(-98vh) scale(1.15); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(-124vh) scale(1.18); }
     }
 
     @keyframes trailGlow {
       0% { opacity: 0; }
-      12% { opacity: 0.95; }
-      55% { opacity: 0.82; }
+      10% { opacity: 0.95; }
+      55% { opacity: 0.8; }
       100% { opacity: 0; }
     }
 
     @keyframes contentShake {
       0% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-4px, 3px) rotate(-0.25deg); }
-      40% { transform: translate(5px, -4px) rotate(0.25deg); }
-      60% { transform: translate(-5px, 4px) rotate(-0.2deg); }
-      80% { transform: translate(4px, -3px) rotate(0.2deg); }
+      20% { transform: translate(-5px, 4px) rotate(-0.25deg); }
+      40% { transform: translate(6px, -4px) rotate(0.25deg); }
+      60% { transform: translate(-6px, 5px) rotate(-0.2deg); }
+      80% { transform: translate(5px, -3px) rotate(0.2deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
   </style>
