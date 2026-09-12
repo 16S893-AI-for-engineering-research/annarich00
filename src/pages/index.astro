@@ -58,38 +58,41 @@ import { resolvePath } from '../lib/paths';
     }
 
     .hero-orbit::before {
-      width: 180vw;
-      height: 180vw;
-      left: -38vw;
-      top: -28vw;
+      width: 220vw;
+      height: 170vw;
+      left: -70vw;
+      top: -22vw;
       border-radius: 50%;
-      border: 1px solid rgba(121, 242, 255, 0.16);
+      border: 1px solid rgba(121, 242, 255, 0.12);
       box-shadow:
-        0 0 0 1px rgba(121, 242, 255, 0.05) inset,
-        0 0 90px rgba(121, 242, 255, 0.05);
+        0 0 0 1px rgba(121, 242, 255, 0.04) inset,
+        0 0 110px rgba(121, 242, 255, 0.04);
       background:
-        radial-gradient(circle at 50% 50%, transparent 0 67%, rgba(121, 242, 255, 0.08) 67.5% 68%, transparent 68.5%),
-        radial-gradient(circle at 50% 50%, transparent 0 78%, rgba(255, 179, 71, 0.08) 78.5% 79%, transparent 79.5%),
-        radial-gradient(circle at 50% 50%, transparent 0 88%, rgba(121, 242, 255, 0.05) 88.5% 89%, transparent 89.5%);
-      opacity: 0.95;
+        radial-gradient(ellipse at 48% 56%, transparent 0 64%, rgba(121, 242, 255, 0.09) 64.5% 65%, transparent 65.5%),
+        radial-gradient(ellipse at 58% 44%, transparent 0 76%, rgba(255, 179, 71, 0.07) 76.5% 77%, transparent 77.5%),
+        radial-gradient(ellipse at 50% 52%, transparent 0 86%, rgba(121, 242, 255, 0.05) 86.5% 87%, transparent 87.5%);
+      opacity: 0.9;
       transform-origin: center;
-      animation: orbitDrift 42s linear infinite;
+      filter: blur(0.5px);
+      animation: orbitDrift 56s linear infinite;
     }
 
     .hero-orbit .moon {
-      width: 54px;
-      height: 54px;
-      right: 8%;
-      top: 10%;
+      width: 42px;
+      height: 42px;
+      right: 10%;
+      top: 12%;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.92), rgba(220, 225, 235, 0.75) 25%, rgba(150, 160, 175, 0.9) 55%, rgba(85, 92, 108, 0.95) 82%, rgba(45, 48, 59, 1) 100%);
+        radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.9), rgba(225, 228, 235, 0.68) 24%, rgba(156, 163, 177, 0.8) 52%, rgba(73, 79, 92, 0.88) 78%, rgba(35, 38, 48, 1) 100%);
       box-shadow:
-        inset -10px -12px 16px rgba(0, 0, 0, 0.35),
-        inset 7px 7px 10px rgba(255, 255, 255, 0.14),
-        0 0 18px rgba(255, 255, 255, 0.12);
+        inset -8px -9px 14px rgba(0, 0, 0, 0.33),
+        inset 6px 6px 9px rgba(255, 255, 255, 0.1),
+        0 0 14px rgba(255, 255, 255, 0.08);
       overflow: hidden;
-      animation: moonOrbit 28s linear infinite;
+      filter: blur(0.8px);
+      opacity: 0.7;
+      animation: moonOrbit 42s linear infinite;
     }
 
     .hero-orbit .moon::before,
@@ -97,38 +100,34 @@ import { resolvePath } from '../lib/paths';
       content: '';
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.07);
     }
 
     .hero-orbit .moon::before {
-      width: 14px;
-      height: 10px;
-      left: 10px;
-      top: 14px;
-      box-shadow: 14px 18px 0 rgba(255, 255, 255, 0.06), 18px 2px 0 rgba(255, 255, 255, 0.05), 24px 16px 0 rgba(255, 255, 255, 0.04);
-      background: rgba(255, 255, 255, 0.06);
+      width: 10px;
+      height: 7px;
+      left: 8px;
+      top: 11px;
+      box-shadow: 10px 14px 0 rgba(255, 255, 255, 0.05), 14px 2px 0 rgba(255, 255, 255, 0.04), 18px 12px 0 rgba(255, 255, 255, 0.03);
     }
 
     .hero-orbit .moon::after {
-      width: 9px;
-      height: 7px;
-      right: 12px;
-      bottom: 12px;
-      box-shadow: -16px -18px 0 rgba(255, 255, 255, 0.06), -22px 1px 0 rgba(255, 255, 255, 0.05);
-      background: rgba(255, 255, 255, 0.05);
+      width: 7px;
+      height: 5px;
+      right: 10px;
+      bottom: 10px;
+      box-shadow: -12px -14px 0 rgba(255, 255, 255, 0.05), -16px 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .hero-orbit .craft {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       border-radius: 50% 50% 42% 42%;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(165, 180, 205, 0.95)),
-        radial-gradient(circle at 50% 35%, rgba(121, 242, 255, 0.7), transparent 48%);
-      box-shadow:
-        0 0 12px rgba(121, 242, 255, 0.45),
-        inset -3px -3px 6px rgba(0, 0, 0, 0.25);
-      animation: craftOrbit 18s linear infinite;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(183, 194, 213, 0.86));
+      box-shadow: 0 0 10px rgba(121, 242, 255, 0.18);
+      filter: blur(1.2px);
+      opacity: 0.42;
+      animation: craftOrbit 36s linear infinite;
       transform-origin: center;
     }
 
@@ -138,29 +137,26 @@ import { resolvePath } from '../lib/paths';
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      background: rgba(220, 230, 245, 0.8);
     }
 
     .hero-orbit .craft::before {
-      left: -8px;
-      width: 7px;
-      height: 18px;
+      left: -7px;
+      width: 6px;
+      height: 14px;
       border-radius: 4px;
-      background: linear-gradient(180deg, rgba(175, 195, 220, 0.98), rgba(88, 105, 136, 0.95));
-      box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.25);
     }
 
     .hero-orbit .craft::after {
-      right: -8px;
-      width: 7px;
-      height: 18px;
+      right: -7px;
+      width: 6px;
+      height: 14px;
       border-radius: 4px;
-      background: linear-gradient(180deg, rgba(175, 195, 220, 0.98), rgba(88, 105, 136, 0.95));
-      box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.25);
     }
 
-    .hero-orbit .craft-1 { left: 12%; top: 32%; animation-duration: 16s; }
-    .hero-orbit .craft-2 { left: 58%; top: 16%; animation-duration: 22s; animation-delay: -7s; }
-    .hero-orbit .craft-3 { left: 72%; top: 62%; animation-duration: 26s; animation-delay: -13s; }
+    .hero-orbit .craft-1 { left: 8%; top: 24%; animation-duration: 28s; }
+    .hero-orbit .craft-2 { left: 44%; top: 14%; animation-duration: 34s; animation-delay: -9s; }
+    .hero-orbit .craft-3 { left: 70%; top: 66%; animation-duration: 40s; animation-delay: -18s; }
 
     .hero-orbit .moon {
       width: 54px;
