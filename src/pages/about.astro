@@ -40,7 +40,7 @@ const photos = [
       {photos.map((photo) => (
         <figure class={`photo-card group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-glow ${photo.span}`}>
           <button type="button" class="rocket-trigger h-full w-full text-left" aria-label="Launch rocket animation" data-rocket-trigger>
-            <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:brightness-110 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_38%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
+            <img src={resolvePath(photo.src)} alt={photo.alt} class={`h-full w-full object-cover transition duration-500 ${photo.src === '/images/wedding-charlie.jpg' ? 'object-[50%_35%]' : ''} ${photo.src === '/images/faith.jpg' ? 'object-[50%_38%]' : ''} ${photo.src === '/images/ULArocket-photo.jpg' ? 'object-[50%_40%]' : ''}`} />
           </button>
           {photo.src === '/images/ULArocket-photo.jpg' && (
             <>
@@ -62,7 +62,8 @@ const photos = [
     const stage = document.querySelector('.about-stage');
     const trigger = document.querySelector('[data-rocket-trigger]');
     if (stage && trigger) {
-      trigger.addEventListener('click', () => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
         stage.classList.remove('is-rumbling');
         void stage.offsetWidth;
         stage.classList.add('is-rumbling');
