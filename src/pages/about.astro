@@ -64,11 +64,19 @@ const photos = [
     const stage = document.querySelector('.about-stage');
     const trigger = document.querySelector('[data-rocket-trigger]');
     if (stage && trigger) {
+      const stopRumble = () => stage.classList.remove('is-rumbling');
       trigger.addEventListener('click', (event) => {
         event.preventDefault();
         stage.classList.remove('is-rumbling');
         void stage.offsetWidth;
         stage.classList.add('is-rumbling');
+        window.setTimeout(stopRumble, 5000);
+      });
+
+      stage.addEventListener('animationend', (event) => {
+        if (event.target instanceof HTMLElement && event.target.classList.contains('rocket-launch')) {
+          stopRumble();
+        }
       });
     }
   </script>
@@ -92,7 +100,7 @@ const photos = [
       width: 60px;
       height: 180px;
       left: 50%;
-      bottom: -18vh;
+      bottom: 0;
       transform: translateX(-50%);
       opacity: 0;
       background:
