@@ -2,40 +2,85 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Project | Agents in a Rendezvous" description="Project overview, milestones, and success criteria.">
+<BaseLayout title="Project | AI-Assisted Trajectory Design for Cislunar Space Operations" description="Project overview, methodology, and success criteria.">
   <section class="space-y-8">
-    <h1 class="text-4xl font-bold">Project Overview</h1>
+    <h1 class="text-4xl font-bold">AI-Assisted Trajectory Design for Cislunar Space Operations</h1>
+
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Problem statement</h2>
-        <p class="text-slate-300">Today, many AI systems can describe orbital rendezvous but struggle to produce accurate, tool-ready solutions. That gap matters because the difference between a plausible answer and an operationally valid maneuver plan is critical in space analysis.</p>
+        <p class="text-slate-300">As mission design moves deeper into the cislunar environment, trajectory optimization, rendezvous, formation flying, and low-thrust transfers are becoming more complex. Large language models show strong reasoning and coding ability, but their usefulness as engineering copilots for astrodynamics remains largely unexplored.</p>
+        <p class="text-slate-300">The central question is not whether AI can replace astrodynamics tools, but whether it can help engineers formulate, analyze, and optimize trajectories more effectively.</p>
       </div>
       <div class="card space-y-4">
-        <h2 class="text-2xl font-semibold">Solution approach</h2>
-        <p class="text-slate-300">The site documents a workflow where agents solve a series of two-body rendezvous cases, check results against orbital propagation tools, and surface maneuver recommendations only when they are supported by the math.</p>
+        <h2 class="text-2xl font-semibold">Why it matters</h2>
+        <p class="text-slate-300">Space operations are expanding beyond Earth orbit, and mission planning in the Earth-Moon system demands both technical expertise and extensive computational analysis. If AI can support trajectory design in a trustworthy way, it could accelerate analysis, lower barriers to entry, and improve engineering productivity.</p>
+        <p class="text-slate-300">This matters for future cislunar operations, autonomous rendezvous, and space domain awareness workflows where engineers need fast iteration with physically valid results.</p>
       </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Research question</h2>
+        <p class="text-slate-300">Can large language models effectively support spacecraft trajectory design by interacting with physics-based mission analysis tools?</p>
+      </div>
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Methodology</h2>
+        <p class="text-slate-300">The workflow combines large language models such as ChatGPT, Gemini, Claude, and future frontier systems with physics-based tools including GMAT, Python astrodynamics libraries, and numerical optimization frameworks.</p>
+        <p class="text-slate-300">The AI system generates candidate mission designs, optimization approaches, and simulation workflows, while traditional astrodynamics tools provide physical validation and performance evaluation.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="text-2xl font-semibold">Phase I: benchmarking known problems</h2>
+      <p class="mt-4 text-slate-300">The initial phase tests whether modern LLMs can reproduce and explain solutions from published spacecraft trajectory optimization research. Representative problems include orbital rendezvous, formation reconfiguration, low-thrust transfers, relative motion dynamics, and spacecraft formation flight.</p>
     </div>
 
     <div class="card">
       <h2 class="text-2xl font-semibold">System flow</h2>
       <div class="mt-6 flex flex-col items-center gap-4 md:flex-row md:justify-between">
-        <div class="flow-node pulse">Perceive</div>
+        <div class="flow-node pulse">Prompt</div>
         <div class="text-orbital">→</div>
-        <div class="flow-node pulse">Detect</div>
+        <div class="flow-node pulse">Plan</div>
         <div class="text-orbital">→</div>
-        <div class="flow-node pulse">Replan</div>
+        <div class="flow-node pulse">Simulate</div>
         <div class="text-orbital">→</div>
         <div class="flow-node pulse">Validate</div>
       </div>
     </div>
 
-    <div class="grid gap-6 lg:grid-cols-3">
-      <div class="card"><h3 class="font-semibold">Milestone 1</h3><p class="text-slate-300">Define a benchmark set of two-body rendezvous problems.</p></div>
-      <div class="card"><h3 class="font-semibold">Milestone 2</h3><p class="text-slate-300">Run baseline agent responses and capture failure modes.</p></div>
-      <div class="card"><h3 class="font-semibold">Milestone 3</h3><p class="text-slate-300">Compare outputs against propagation and analytic tools.</p></div>
-      <div class="card"><h3 class="font-semibold">Milestone 4</h3><p class="text-slate-300">Prototype maneuver translation into tool-ready formats.</p></div>
-      <div class="card"><h3 class="font-semibold">Milestone 5</h3><p class="text-slate-300">Summarize results and recommendations for next steps.</p></div>
-      <div class="card"><h3 class="font-semibold">Success metrics</h3><p class="text-slate-300">Accuracy, consistency, explainability, and tool compatibility.</p></div>
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Milestones</h2>
+        <ol class="space-y-3 text-slate-300">
+          <li><strong>1.</strong> Build a benchmark dataset from known astrodynamics problems.</li>
+          <li><strong>2.</strong> Test multiple LLMs on problem setup, explanation, and workflow generation.</li>
+          <li><strong>3.</strong> Compare AI-generated solutions against known analytical and numerical results.</li>
+          <li><strong>4.</strong> Evaluate whether LLMs can assist an engineer using GMAT or related tools.</li>
+          <li><strong>5.</strong> Summarize findings and identify the most promising directions for thesis work.</li>
+        </ol>
+      </div>
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Success metrics</h2>
+        <ul class="space-y-3 text-slate-300">
+          <li>Accuracy of solutions relative to known benchmarks</li>
+          <li>Ability to explain and set up optimization problems correctly</li>
+          <li>Quality of generated GMAT or simulation workflows</li>
+          <li>Consistency across multiple models</li>
+          <li>Usefulness to a human engineer working through trajectory design</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Data and restrictions</h2>
+        <p class="text-slate-300">This project uses public and synthetic data only. The benchmark set is based on published research and non-sensitive reference problems.</p>
+      </div>
+      <div class="card space-y-4">
+        <h2 class="text-2xl font-semibold">Long-term vision</h2>
+        <p class="text-slate-300">This class project is the foundation for a future master’s thesis on AI-assisted mission planning in more complex dynamical environments, including CR3BP, Earth-Moon trajectory design, cislunar rendezvous, and autonomous mission planning under uncertainty.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
