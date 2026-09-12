@@ -125,7 +125,7 @@ const photos = [
     }
 
     .photo-card:hover .rocket-rumble {
-      animation: pageRumble 2.8s ease-out forwards;
+      animation: pageRumble 2.8s linear forwards;
     }
 
     .photo-card:hover .rocket-whoosh {
@@ -133,45 +133,57 @@ const photos = [
     }
 
     .photo-card:hover .rocket-launch {
-      animation: rocketLaunch 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: rocketLaunch 2.8s linear forwards;
     }
 
     .photo-card:hover .rocket-trail {
       animation: trailGlow 2.8s ease-out forwards;
     }
 
+    .photo-card:hover,
+    .photo-card:hover img,
+    .photo-card:hover .pointer-events-none:not(.rocket-launch):not(.rocket-trail) {
+      animation: contentShake 0.55s linear infinite;
+    }
+
     @keyframes pageRumble {
-      0% { opacity: 0; transform: translate(0, 0) scale(1); }
-      6% { opacity: 0.8; transform: translate(-8px, 6px) scale(1.01); }
-      12% { transform: translate(10px, -7px) scale(0.99); }
-      18% { transform: translate(-12px, 8px) scale(1.01); }
-      26% { transform: translate(8px, -6px) scale(0.995); }
-      36% { transform: translate(-6px, 4px) scale(1); }
-      100% { opacity: 0; transform: translate(0, 0) scale(1); }
+      0% { opacity: 0; }
+      8% { opacity: 0.9; }
+      24% { opacity: 1; }
+      100% { opacity: 0; }
     }
 
     @keyframes pageWhoosh {
       0% { opacity: 0; }
-      10% { opacity: 0.75; }
-      35% { opacity: 0.95; }
+      10% { opacity: 0.8; }
+      35% { opacity: 1; }
       100% { opacity: 0; }
     }
 
     @keyframes rocketLaunch {
-      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.65) rotate(-8deg); }
-      8% { opacity: 1; transform: translateX(-50%) translateY(0) scale(0.68) rotate(-8deg); }
-      16% { transform: translateX(-50%) translateY(-12vh) scale(0.76) rotate(-4deg); }
-      28% { transform: translateX(-50%) translateY(-28vh) scale(0.86) rotate(2deg); }
-      45% { transform: translateX(-50%) translateY(-52vh) scale(0.98) rotate(8deg); }
-      68% { transform: translateX(-50%) translateY(-80vh) scale(1.08) rotate(12deg); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(-118vh) scale(1.16) rotate(16deg); }
+      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.68) rotate(-6deg); }
+      8% { opacity: 1; transform: translateX(-50%) translateY(0) scale(0.72) rotate(-6deg); }
+      18% { transform: translateX(-50%) translateY(-14vh) scale(0.82) rotate(-2deg); }
+      34% { transform: translateX(-50%) translateY(-34vh) scale(0.94) rotate(3deg); }
+      52% { transform: translateX(-50%) translateY(-60vh) scale(1.04) rotate(8deg); }
+      72% { transform: translateX(-50%) translateY(-88vh) scale(1.12) rotate(12deg); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(-118vh) scale(1.18) rotate(16deg); }
     }
 
     @keyframes trailGlow {
       0% { opacity: 0; }
-      15% { opacity: 0.9; }
-      55% { opacity: 0.75; }
+      12% { opacity: 0.95; }
+      55% { opacity: 0.82; }
       100% { opacity: 0; }
+    }
+
+    @keyframes contentShake {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      20% { transform: translate(-3px, 2px) rotate(-0.2deg); }
+      40% { transform: translate(4px, -3px) rotate(0.2deg); }
+      60% { transform: translate(-4px, 3px) rotate(-0.15deg); }
+      80% { transform: translate(3px, -2px) rotate(0.15deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
     }
   </style>
 </BaseLayout>
