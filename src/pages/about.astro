@@ -66,7 +66,7 @@ const photos = [
     const trigger = document.querySelector('[data-rocket-trigger]');
     const launchStage = document.querySelector('.launch-stage');
 
-    if (trigger && launchStage) {
+    if (trigger && launchStage && stage) {
       const startLaunch = () => {
         launchStage.classList.remove('hidden');
         launchStage.classList.remove('is-launching');
@@ -218,24 +218,24 @@ const photos = [
       50% { transform: translateX(-50%) translateY(3px); }
       100% { opacity: 0; transform: translateX(-50%) scale(1); }
     }
-+
-+    @keyframes pageShake {
-+      0% { transform: translate(0, 0); }
-+      20% { transform: translate(-8px, 4px); }
-+      40% { transform: translate(7px, -5px); }
-+      60% { transform: translate(-6px, 5px); }
-+      80% { transform: translate(5px, -3px); }
-+      100% { transform: translate(0, 0); }
-+    }
-+
-+    @keyframes pageShakeAlt {
-+      0% { transform: translate(0, 0); }
-+      20% { transform: translate(6px, -3px); }
-+      40% { transform: translate(-7px, 4px); }
-+      60% { transform: translate(5px, -4px); }
-+      80% { transform: translate(-5px, 3px); }
-+      100% { transform: translate(0, 0); }
-+    }
+
+    @keyframes pageShake {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-8px, 4px); }
+      40% { transform: translate(7px, -5px); }
+      60% { transform: translate(-6px, 5px); }
+      80% { transform: translate(5px, -3px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes pageShakeAlt {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(6px, -3px); }
+      40% { transform: translate(-7px, 4px); }
+      60% { transform: translate(5px, -4px); }
+      80% { transform: translate(-5px, 3px); }
+      100% { transform: translate(0, 0); }
+    }
 
     @keyframes flash {
       0% { opacity: 0; }
