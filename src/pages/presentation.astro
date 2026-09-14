@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Presentation | Thesis Work" description="Weekly advisor presentation with progress, proposals, papers, and next steps.">
+  <section class="space-y-8">
+    <div class="space-y-3">
+      <p class="text-sm uppercase tracking-[0.3em] text-orbital">Thesis Work</p>
+      <h1 class="text-4xl font-bold">Weekly Advisor Presentation</h1>
+      <p class="max-w-3xl text-slate-300">
+        This page is a separate presentation tab for weekly meetings with your advisor.
+      </p>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <section class="card space-y-3">
+        <h2 class="text-2xl font-semibold">1. Work over the past week</h2>
+        <ul class="list-disc space-y-2 pl-5 text-slate-300">
+          <li>Created and organized this website as a research portfolio and project hub.</li>
+          <li>Set up the Astro site structure, layout, styling, and GitHub Pages deployment path.</li>
+          <li>Drafted the home, about, project, schedule, and dev log pages to support the semester project.</li>
+          <li>Added a hidden thesis-work access flow and now a separate presentation page for advisor meetings.</li>
+        </ul>
+      </section>
+
+      <section class="card space-y-3">
+        <h2 class="text-2xl font-semibold">2. Class drop proposals</h2>
+        <ul class="list-disc space-y-2 pl-5 text-slate-300">
+          <li>Proposal A: keep the project focused on trajectory design and AI-assisted analysis without expanding too broadly.</li>
+          <li>Proposal B: emphasize one strong technical storyline—benchmarking LLM outputs against astrodynamics problems.</li>
+          <li>Proposal C: if needed, narrow thesis scope to the most defensible use case for mission planning support.</li>
+          <li>Use advisor feedback to decide which parts of the larger vision should stay in the semester deliverable.</li>
+        </ul>
+      </section>
+
+      <section class="card space-y-3">
+        <h2 class="text-2xl font-semibold">3. Interesting applicable papers</h2>
+        <ul class="list-disc space-y-2 pl-5 text-slate-300">
+          <li>LLM reasoning and tool-use papers relevant to engineering workflows.</li>
+          <li>Astrodynamics optimization papers on rendezvous, low-thrust transfers, and formation flying.</li>
+          <li>Research on human-AI collaboration in scientific and engineering analysis.</li>
+          <li>Papers on verifying AI-generated numerical or simulation results in physics-based tools.</li>
+        </ul>
+      </section>
+
+      <section class="card space-y-3">
+        <h2 class="text-2xl font-semibold">4. Work over the next week</h2>
+        <ul class="list-disc space-y-2 pl-5 text-slate-300">
+          <li>Collect and summarize a short list of papers to discuss with the advisor.</li>
+          <li>Refine the project scope based on feedback from the class drop proposal discussion.</li>
+          <li>Add one concrete example problem or demo workflow to the site.</li>
+          <li>Prepare the next weekly update with clear progress, blockers, and next steps.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
