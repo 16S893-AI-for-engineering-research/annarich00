@@ -70,10 +70,13 @@ const photos = [
       const startLaunch = () => {
         launchStage.classList.remove('hidden');
         launchStage.classList.remove('is-launching');
+        stage.classList.remove('is-launching');
         void launchStage.offsetWidth;
         launchStage.classList.add('is-launching');
+        stage.classList.add('is-launching');
         window.setTimeout(() => {
           launchStage.classList.remove('is-launching');
+          stage.classList.remove('is-launching');
           launchStage.classList.add('hidden');
         }, 5000);
       };
@@ -88,6 +91,14 @@ const photos = [
   <style>
     .about-stage {
       position: relative;
+    }
+
+    .about-stage.is-launching .space-shake {
+      animation: pageShake 0.18s linear infinite;
+    }
+
+    .about-stage.is-launching .space-shake > * {
+      animation: pageShakeAlt 0.18s linear infinite;
     }
 
     .rocket-trigger {
@@ -207,6 +218,24 @@ const photos = [
       50% { transform: translateX(-50%) translateY(3px); }
       100% { opacity: 0; transform: translateX(-50%) scale(1); }
     }
++
++    @keyframes pageShake {
++      0% { transform: translate(0, 0); }
++      20% { transform: translate(-8px, 4px); }
++      40% { transform: translate(7px, -5px); }
++      60% { transform: translate(-6px, 5px); }
++      80% { transform: translate(5px, -3px); }
++      100% { transform: translate(0, 0); }
++    }
++
++    @keyframes pageShakeAlt {
++      0% { transform: translate(0, 0); }
++      20% { transform: translate(6px, -3px); }
++      40% { transform: translate(-7px, 4px); }
++      60% { transform: translate(5px, -4px); }
++      80% { transform: translate(-5px, 3px); }
++      100% { transform: translate(0, 0); }
++    }
 
     @keyframes flash {
       0% { opacity: 0; }
