@@ -59,6 +59,7 @@ const photos = [
   <div class="rocket-whoosh pointer-events-none fixed inset-0 z-[80] opacity-0"></div>
   <div class="rocket-launch pointer-events-none fixed left-1/2 top-[95vh] z-[90] opacity-0"></div>
   <div class="rocket-trail pointer-events-none fixed left-1/2 top-[95vh] z-[85] opacity-0"></div>
+  <div class="rocket-flash pointer-events-none fixed inset-0 z-[95] opacity-0"></div>
 
   <script is:inline>
     const stage = document.querySelector('.about-stage');
@@ -113,6 +114,14 @@ const photos = [
         radial-gradient(circle at 50% 88%, rgba(121, 242, 255, 0.28), transparent 18%),
         linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.12), rgba(5, 8, 22, 0));
       mix-blend-mode: screen;
+    }
+
+    .rocket-flash {
+      background:
+        radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.95), rgba(121, 242, 255, 0.5) 20%, transparent 42%),
+        radial-gradient(circle at 50% 88%, rgba(255, 179, 71, 0.65), transparent 18%);
+      mix-blend-mode: screen;
+      opacity: 0;
     }
 
     .rocket-launch {
@@ -203,6 +212,10 @@ const photos = [
       animation: trailGlow 4s ease-out forwards;
     }
 
+    .about-stage.is-rumbling .rocket-flash {
+      animation: flashBurst 1.2s ease-out forwards;
+    }
+
     @keyframes pageRumble {
       0% { opacity: 0; }
       8% { opacity: 0.75; }
@@ -218,16 +231,22 @@ const photos = [
 
     @keyframes rocketLaunch {
       0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.7); }
-      8% { opacity: 1; transform: translateX(-50%) translateY(-8vh) scale(0.78); }
-      22% { transform: translateX(-50%) translateY(-22vh) scale(0.9); }
-      45% { transform: translateX(-50%) translateY(-52vh) scale(1.02); }
-      70% { transform: translateX(-50%) translateY(-82vh) scale(1.1); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(-130vh) scale(1.16); }
+      8% { opacity: 1; transform: translateX(-50%) translateY(-10vh) scale(0.78); }
+      22% { transform: translateX(-50%) translateY(-26vh) scale(0.9); }
+      45% { transform: translateX(-50%) translateY(-58vh) scale(1.02); }
+      70% { transform: translateX(-50%) translateY(-90vh) scale(1.1); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(-138vh) scale(1.16); }
     }
 
     @keyframes trailGlow {
       0% { opacity: 0; }
       10% { opacity: 0.9; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes flashBurst {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
       100% { opacity: 0; }
     }
 
