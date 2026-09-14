@@ -55,25 +55,29 @@ const photos = [
     </div>
   </section>
 
-  <div class="rocket-rumble pointer-events-none fixed inset-0 z-[70] opacity-0"></div>
-  <div class="rocket-whoosh pointer-events-none fixed inset-0 z-[80] opacity-0"></div>
-  <div class="rocket-launch pointer-events-none fixed left-1/2 top-[95vh] z-[90] opacity-0"></div>
-  <div class="rocket-trail pointer-events-none fixed left-1/2 top-[95vh] z-[85] opacity-0"></div>
-  <div class="rocket-flash pointer-events-none fixed inset-0 z-[95] opacity-0"></div>
-  <div class="rocket-debug pointer-events-none fixed left-4 top-4 z-[100] rounded bg-black/70 px-3 py-2 text-xs text-white opacity-0">rocket debug</div>
+  <div class="launch-stage pointer-events-none fixed inset-0 z-[999] hidden" aria-hidden="true">
+    <div class="launch-rumble"></div>
+    <div class="launch-flash"></div>
+    <div class="launch-trail"></div>
+    <div class="launch-rocket"></div>
+  </div>
 
   <script is:inline>
-    const stage = document.querySelector('.about-stage');
     const trigger = document.querySelector('[data-rocket-trigger]');
-    if (stage && trigger) {
-      const stopRumble = () => stage.classList.remove('is-rumbling');
+    const launchStage = document.querySelector('.launch-stage');
+
+    if (trigger && launchStage) {
       const startLaunch = () => {
-        stage.classList.remove('is-rumbling');
-        void stage.offsetWidth;
-        stage.classList.add('is-rumbling');
-        window.clearTimeout(window.__rocketTimeout);
-        window.__rocketTimeout = window.setTimeout(stopRumble, 5000);
+        launchStage.classList.remove('hidden');
+        launchStage.classList.remove('is-launching');
+        void launchStage.offsetWidth;
+        launchStage.classList.add('is-launching');
+        window.setTimeout(() => {
+          launchStage.classList.remove('is-launching');
+          launchStage.classList.add('hidden');
+        }, 5000);
       };
+
       trigger.addEventListener('click', (event) => {
         event.preventDefault();
         startLaunch();
@@ -84,7 +88,6 @@ const photos = [
   <style>
     .about-stage {
       position: relative;
-      isolation: isolate;
     }
 
     .rocket-trigger {
@@ -95,52 +98,59 @@ const photos = [
       cursor: pointer;
     }
 
-    .rocket-rumble,
-    .rocket-whoosh,
-    .rocket-launch,
-    .rocket-trail,
-    .rocket-flash,
-    .rocket-debug {
-      will-change: transform, opacity;
+    .launch-stage {
+      overflow: hidden;
       pointer-events: none;
     }
 
-    .rocket-rumble {
+    .launch-rumble,
+    .launch-flash,
+    .launch-trail,
+    .launch-rocket {
+      position: fixed;
+      left: 50%;
+      pointer-events: none;
+      transform: translateX(-50%);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .launch-rumble {
+      inset: 0;
       background:
         radial-gradient(circle at 50% 50%, rgba(121, 242, 255, 0.12), transparent 28%),
         radial-gradient(circle at 50% 90%, rgba(255, 179, 71, 0.12), transparent 18%);
       mix-blend-mode: screen;
     }
 
-    .rocket-whoosh {
+    .launch-flash {
+      inset: 0;
       background:
-        radial-gradient(circle at 50% 88%, rgba(121, 242, 255, 0.28), transparent 18%),
-        linear-gradient(180deg, rgba(5, 8, 22, 0), rgba(121, 242, 255, 0.12), rgba(5, 8, 22, 0));
+        radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.95), rgba(121, 242, 255, 0.4) 20%, transparent 42%),
+        radial-gradient(circle at 50% 88%, rgba(255, 179, 71, 0.6), transparent 18%);
       mix-blend-mode: screen;
     }
 
-    .rocket-flash {
-      background:
-        radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.95), rgba(121, 242, 255, 0.5) 20%, transparent 42%),
-        radial-gradient(circle at 50% 88%, rgba(255, 179, 71, 0.65), transparent 18%);
-      mix-blend-mode: screen;
-      opacity: 0;
+    .launch-trail {
+      bottom: -12vh;
+      width: 42px;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.8), rgba(121, 242, 255, 0.18), rgba(5, 8, 22, 0));
+      filter: blur(20px);
     }
 
-    .rocket-launch {
+    .launch-rocket {
+      bottom: -18vh;
       width: 72px;
       height: 210px;
-      transform: translateX(-50%);
-      z-index: 9999;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(212, 220, 232, 0.96) 18%, rgba(149, 160, 178, 0.96) 58%, rgba(73, 84, 100, 0.98));
       clip-path: polygon(50% 0%, 63% 10%, 70% 18%, 76% 28%, 76% 70%, 100% 82%, 100% 100%, 0 100%, 0 82%, 24% 70%, 24% 28%, 30% 18%, 37% 10%);
-      filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.55)) drop-shadow(0 0 26px rgba(121, 242, 255, 0.45));
+      filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.6)) drop-shadow(0 0 28px rgba(121, 242, 255, 0.45));
       transform-origin: center bottom;
-      opacity: 0;
     }
 
-    .rocket-launch::before {
+    .launch-rocket::before {
       content: '';
       position: absolute;
       left: 50%;
@@ -154,7 +164,7 @@ const photos = [
       filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.28));
     }
 
-    .rocket-launch::after {
+    .launch-rocket::after {
       content: '';
       position: absolute;
       left: 50%;
@@ -168,100 +178,51 @@ const photos = [
       opacity: 0.98;
     }
 
-    .rocket-trail {
-      width: 34px;
-      height: 100vh;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.78), rgba(121, 242, 255, 0.18), rgba(5, 8, 22, 0));
-      filter: blur(22px);
-      opacity: 0;
+    .launch-stage.is-launching .launch-rumble {
+      animation: rumble 5s linear forwards;
     }
 
-    .about-stage::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 60;
-      pointer-events: none;
-      opacity: 0;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(121, 242, 255, 0.18), transparent 30%),
-        radial-gradient(circle at 50% 92%, rgba(255, 179, 71, 0.18), transparent 16%);
+    .launch-stage.is-launching .launch-flash {
+      animation: flash 1s ease-out forwards;
     }
 
-    .about-stage.is-rumbling::before {
-      animation: pageRumble 5s linear forwards;
+    .launch-stage.is-launching .launch-trail {
+      animation: trail 4s ease-out forwards;
     }
 
-    .about-stage.is-rumbling .space-shake,
-    .about-stage.is-rumbling .space-shake * {
-      animation: contentShake 0.18s linear infinite;
-      will-change: transform;
+    .launch-stage.is-launching .launch-rocket {
+      animation: rocket 4s cubic-bezier(0.16, 0.84, 0.2, 1) forwards;
     }
 
-    .about-stage.is-rumbling .rocket-rumble {
-      animation: pageRumble 5s linear forwards;
+    @keyframes rumble {
+      0% { opacity: 0; transform: translateX(-50%) scale(1); }
+      10% { opacity: 1; }
+      20% { transform: translateX(-50%) translateY(-2px); }
+      30% { transform: translateX(-50%) translateY(2px); }
+      40% { transform: translateX(-50%) translateY(-3px); }
+      50% { transform: translateX(-50%) translateY(3px); }
+      100% { opacity: 0; transform: translateX(-50%) scale(1); }
     }
 
-    .about-stage.is-rumbling .rocket-whoosh {
-      animation: pageWhoosh 4s ease-out forwards;
-    }
-
-    .about-stage.is-rumbling .rocket-launch {
-      animation: rocketLaunch 4s cubic-bezier(0.16, 0.84, 0.2, 1) forwards;
-      opacity: 1;
-    }
-
-    .about-stage.is-rumbling .rocket-trail {
-      animation: trailGlow 4s ease-out forwards;
-    }
-
-    .about-stage.is-rumbling .rocket-flash {
-      animation: flashBurst 1.2s ease-out forwards;
-    }
-
-    @keyframes pageRumble {
-      0% { opacity: 0; }
-      8% { opacity: 0.75; }
-      18% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    @keyframes pageWhoosh {
-      0% { opacity: 0; }
-      12% { opacity: 0.85; }
-      100% { opacity: 0; }
-    }
-
-    @keyframes rocketLaunch {
-      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.7); }
-      8% { opacity: 1; transform: translateX(-50%) translateY(-10vh) scale(0.78); }
-      22% { transform: translateX(-50%) translateY(-26vh) scale(0.9); }
-      45% { transform: translateX(-50%) translateY(-58vh) scale(1.02); }
-      70% { transform: translateX(-50%) translateY(-90vh) scale(1.1); }
-      100% { opacity: 1; transform: translateX(-50%) translateY(-138vh) scale(1.16); }
-    }
-
-    @keyframes trailGlow {
-      0% { opacity: 0; }
-      10% { opacity: 0.9; }
-      100% { opacity: 0; }
-    }
-
-    @keyframes flashBurst {
+    @keyframes flash {
       0% { opacity: 0; }
       10% { opacity: 1; }
       100% { opacity: 0; }
     }
 
-    @keyframes contentShake {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      20% { transform: translate(-6px, 4px) rotate(-0.25deg); }
-      40% { transform: translate(6px, -4px) rotate(0.25deg); }
-      60% { transform: translate(-5px, 5px) rotate(-0.2deg); }
-      80% { transform: translate(5px, -3px) rotate(0.2deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
+    @keyframes trail {
+      0% { opacity: 0; }
+      10% { opacity: 0.9; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes rocket {
+      0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.72); }
+      8% { opacity: 1; transform: translateX(-50%) translateY(-10vh) scale(0.78); }
+      22% { transform: translateX(-50%) translateY(-26vh) scale(0.9); }
+      45% { transform: translateX(-50%) translateY(-58vh) scale(1.02); }
+      70% { transform: translateX(-50%) translateY(-90vh) scale(1.1); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(-138vh) scale(1.16); }
     }
   </style>
 </BaseLayout>
