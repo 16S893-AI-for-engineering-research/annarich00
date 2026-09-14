@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ThesisWorkSecret from '../components/ThesisWorkSecret.astro';
 import { resolvePath } from '../lib/paths';
 import '../styles/globals.css';
 
@@ -22,5 +23,6 @@ const fullTitle = title ? `${title} | Anna Richards` : 'Anna Richards';
       <slot />
     </main>
     <Footer />
+    <ThesisWorkSecret />
   </body>
 </html>
