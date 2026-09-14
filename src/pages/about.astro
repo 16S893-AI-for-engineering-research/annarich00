@@ -60,6 +60,7 @@ const photos = [
   <div class="rocket-launch pointer-events-none fixed left-1/2 top-[95vh] z-[90] opacity-0"></div>
   <div class="rocket-trail pointer-events-none fixed left-1/2 top-[95vh] z-[85] opacity-0"></div>
   <div class="rocket-flash pointer-events-none fixed inset-0 z-[95] opacity-0"></div>
+  <div class="rocket-debug pointer-events-none fixed left-4 top-4 z-[100] rounded bg-black/70 px-3 py-2 text-xs text-white opacity-0">rocket debug</div>
 
   <script is:inline>
     const stage = document.querySelector('.about-stage');
@@ -97,7 +98,9 @@ const photos = [
     .rocket-rumble,
     .rocket-whoosh,
     .rocket-launch,
-    .rocket-trail {
+    .rocket-trail,
+    .rocket-flash,
+    .rocket-debug {
       will-change: transform, opacity;
       pointer-events: none;
     }
@@ -128,6 +131,7 @@ const photos = [
       width: 72px;
       height: 210px;
       transform: translateX(-50%);
+      z-index: 9999;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(212, 220, 232, 0.96) 18%, rgba(149, 160, 178, 0.96) 58%, rgba(73, 84, 100, 0.98));
       clip-path: polygon(50% 0%, 63% 10%, 70% 18%, 76% 28%, 76% 70%, 100% 82%, 100% 100%, 0 100%, 0 82%, 24% 70%, 24% 28%, 30% 18%, 37% 10%);
@@ -206,6 +210,7 @@ const photos = [
 
     .about-stage.is-rumbling .rocket-launch {
       animation: rocketLaunch 4s cubic-bezier(0.16, 0.84, 0.2, 1) forwards;
+      opacity: 1;
     }
 
     .about-stage.is-rumbling .rocket-trail {
