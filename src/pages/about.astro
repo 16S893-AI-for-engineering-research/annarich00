@@ -121,6 +121,7 @@ const photos = [
         radial-gradient(circle at 50% 50%, rgba(121, 242, 255, 0.12), transparent 28%),
         radial-gradient(circle at 50% 90%, rgba(255, 179, 71, 0.12), transparent 18%);
       mix-blend-mode: screen;
+      z-index: 9996;
     }
 
     .launch-flash {
@@ -129,6 +130,7 @@ const photos = [
         radial-gradient(circle at 50% 92%, rgba(255, 255, 255, 0.95), rgba(121, 242, 255, 0.4) 20%, transparent 42%),
         radial-gradient(circle at 50% 88%, rgba(255, 179, 71, 0.6), transparent 18%);
       mix-blend-mode: screen;
+      z-index: 9997;
     }
 
     .launch-trail {
@@ -137,6 +139,7 @@ const photos = [
       height: 100vh;
       background: linear-gradient(180deg, rgba(255, 179, 71, 0), rgba(255, 179, 71, 0.8), rgba(121, 242, 255, 0.18), rgba(5, 8, 22, 0));
       filter: blur(20px);
+      z-index: 9998;
     }
 
     .launch-rocket {
@@ -148,6 +151,7 @@ const photos = [
       clip-path: polygon(50% 0%, 63% 10%, 70% 18%, 76% 28%, 76% 70%, 100% 82%, 100% 100%, 0 100%, 0 82%, 24% 70%, 24% 28%, 30% 18%, 37% 10%);
       filter: drop-shadow(0 0 18px rgba(255, 179, 71, 0.6)) drop-shadow(0 0 28px rgba(121, 242, 255, 0.45));
       transform-origin: center bottom;
+      z-index: 9999;
     }
 
     .launch-rocket::before {
