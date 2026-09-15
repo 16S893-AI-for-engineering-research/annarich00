@@ -65,6 +65,7 @@ const photos = [
   <script is:inline>
     const trigger = document.querySelector('[data-rocket-trigger]');
     const launchStage = document.querySelector('.launch-stage');
+    const stage = document.querySelector('.about-stage');
 
     if (trigger && launchStage && stage) {
       const startLaunch = () => {
@@ -78,7 +79,7 @@ const photos = [
           launchStage.classList.remove('is-launching');
           stage.classList.remove('is-launching');
           launchStage.classList.add('hidden');
-        }, 5000);
+        }, 4200);
       };
 
       trigger.addEventListener('click', (event) => {
