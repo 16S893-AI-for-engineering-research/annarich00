@@ -11,21 +11,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const input = document.querySelector('[data-password-input]');
       const error = document.querySelector('[data-password-error]');
       const content = document.querySelector('[data-protected-content]');
-
       if (!gate || !form || !input || !error || !content) return;
 
-      const unlocked = sessionStorage.getItem('schedule-unlocked') === 'true';
-      if (unlocked) {
+      const unlock = () => {
         gate.classList.add('hidden');
         content.classList.remove('hidden');
-      }
+      };
+
+      const lock = () => {
+        gate.classList.remove('hidden');
+        content.classList.add('hidden');
+        input.value = '';
+      };
+
+      lock();
 
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         if (input.value.trim().toLowerCase() === PASSWORD) {
-          sessionStorage.setItem('schedule-unlocked', 'true');
-          gate.classList.add('hidden');
-          content.classList.remove('hidden');
+          unlock();
           error.textContent = '';
         } else {
           error.textContent = 'Incorrect password. Try again.';
