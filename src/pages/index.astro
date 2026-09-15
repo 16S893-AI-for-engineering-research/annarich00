@@ -9,10 +9,10 @@ import { resolvePath } from '../lib/paths';
       <p class="mb-4 text-sm uppercase tracking-[0.3em] text-orbital">Mission Minded</p>
       <h1 class="text-5xl font-bold leading-tight sm:text-6xl">Trajectory Copilot</h1>
       <p class="mt-6 max-w-2xl text-lg text-slate-300">
-        I am researching how large language models can work alongside physics-based astrodynamics tools to assist trajectory design and mission planning for future cislunar space operations. This semester project focuses on understanding where agentic models can help mission planners without stepping outside physically valid, engineering-safe bounds.
+        I am researching how large language models can work alongside physics-based astrodynamics tools like GMAT (General Mission Analysis Tool) to assist trajectory design and mission planning. I hope to expand this in my master's thesis to mission planning surrounding the complications of cislunar space operations. This semester project focuses on understanding where agentic models can help mission planners while remaining accurate and under my control.
       </p>
       <p class="mt-4 max-w-2xl text-slate-300">
-        The project centers on three goals: benchmark LLMs on known astrodynamics problems, validate their outputs in tools like GMAT or Python workflows, and define the guardrails for where agentic models can responsibly assist mission planners.
+        The project centers on three goals: benchmark LLMs on known astrodynamics problems, validate their outputs in tools like GMAT or Python workflows, and (potentially) define the guardrails for where agentic models can responsibly assist mission planners.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
         <a class="rounded-full bg-orbital px-5 py-3 font-semibold text-slate-950 transition hover:opacity-90" href={resolvePath('/project')}>Project</a>
@@ -32,11 +32,11 @@ import { resolvePath } from '../lib/paths';
         </div>
         <div class="rounded-xl border border-white/10 bg-black/20 p-4">
           <p class="text-sm text-thruster">Goal 2</p>
-          <p class="mt-2 text-sm text-slate-300">Check whether LLM outputs can be validated inside GMAT or Python astrodynamics workflows.</p>
+          <p class="mt-2 text-sm text-slate-300">Validate the LLM outputs inside GMAT and/or Python astrodynamics workflows.</p>
         </div>
         <div class="rounded-xl border border-white/10 bg-black/20 p-4">
           <p class="text-sm text-white">Goal 3</p>
-          <p class="mt-2 text-sm text-slate-300">Define the guardrails for where agentic models can responsibly assist mission planners.</p>
+          <p class="mt-2 text-sm text-slate-300">Investigate the guardrails where agentic models can truly and responsibly assist mission planners.</p>
         </div>
       </div>
     </div>
