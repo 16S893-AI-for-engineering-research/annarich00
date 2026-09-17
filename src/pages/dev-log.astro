@@ -2,6 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const entries = [
+
+{
+    date: '2026-09-17',
+    title: 'Added my first skill: orbital-problem-formalizer',
+    summary: "This skill formats a problem into specific orbital dynamics requirements and evaluates if it is ready to solve, missing key information or has an error in how it could be implemented.",
+    details: "The idea behind this skill is to first format a problem into something that can be handed off to another skill that has the orbital dynamics math in it. I ran three tests that I placed in a folder called 'evaluations' and also wrote my findings in my file baseline_comparison.md within my pi/trajectory-copilot folder. the first and last problem i gave the LLM gave my expected output, but the second gave a 'partial pass' according to my expectations. the LLM interprets the skill very conservatively, which may have to be adjusted in the future if it cannot reason through certain problems."
+  },
+
   {
     date: '2026-09-16',
     title: 'Counted my lengthiest session on September 11 by session messages and tool calls',
