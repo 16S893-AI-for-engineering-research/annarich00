@@ -3,21 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { resolvePath } from '../lib/paths';
 ---
 
-<BaseLayout title="Trajectory Copilot" description="Anna Ford-Richards research portfolio on AI-assisted trajectory design and cislunar mission planning.">
+<BaseLayout title="Trajectory CoPilot" description="Trajectory CoPilot is an agentic interface for astrodynamics and mission design focused on benchmarked trajectory solutions and physics-based validation.">
   <section class="hero-orbit grid gap-10 lg:grid-cols-2 lg:items-center">
     <div>
       <p class="mb-4 text-sm uppercase tracking-[0.3em] text-orbital">Mission Minded</p>
-      <h1 class="text-5xl font-bold leading-tight sm:text-6xl">Trajectory Copilot</h1>
+      <h1 class="text-5xl font-bold leading-tight sm:text-6xl">Trajectory CoPilot</h1>
       <p class="mt-6 max-w-2xl text-lg text-slate-300">
-        I am researching how large language models can work alongside physics-based astrodynamics tools like GMAT (General Mission Analysis Tool) to assist trajectory design and mission planning. I hope to expand this in my master's thesis to mission planning surrounding the complications of cislunar space operations. This semester project focuses on understanding where agentic models can help mission planners while remaining accurate and under my control.
+        An agentic interface for astrodynamics and mission design.
       </p>
       <p class="mt-4 max-w-2xl text-slate-300">
-        The project centers on three goals: benchmark LLMs on known astrodynamics problems, validate their outputs in tools like GMAT or Python workflows, and (potentially) define the guardrails for where agentic models can responsibly assist mission planners.
+        This project asks whether an AI agent can act as a trajectory copilot that helps engineers explore, validate, and iterate on mission designs while maintaining physical correctness. The focus is on cislunar and three-body dynamics, where mission objectives change and uncertainty makes trajectory design harder.
+      </p>
+      <p class="mt-4 max-w-2xl text-slate-300">
+        I want to test whether a well-structured agent can reduce the time and expertise required to explore rendezvous and transfer options, while using GMAT and other established tools to verify the results.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
         <a class="rounded-full bg-orbital px-5 py-3 font-semibold text-slate-950 transition hover:opacity-90" href={resolvePath('/project')}>Project</a>
-        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-orbital" href={resolvePath('/about')}>About</a>
-        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-thruster" href={resolvePath('/dev-log')}>Dev Log</a>
+        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-orbital" href={resolvePath('/schedule')}>Schedule</a>
+        <a class="rounded-full border border-white/15 px-5 py-3 font-semibold text-white transition hover:border-thruster" href={resolvePath('/about')}>About</a>
       </div>
     </div>
     <div class="moon"></div>
@@ -27,16 +30,16 @@ import { resolvePath } from '../lib/paths';
     <div class="card">
       <div class="grid gap-4 sm:grid-cols-3">
         <div class="rounded-xl border border-white/10 bg-black/20 p-4">
-          <p class="text-sm text-orbital">Goal 1</p>
-          <p class="mt-2 text-sm text-slate-300">Benchmark how well LLMs can reproduce and explain known trajectory design problems.</p>
+          <p class="text-sm text-orbital">Phase 1</p>
+          <p class="mt-2 text-sm text-slate-300">Solve classic two-body and rendezvous problems, starting with Clohessy-Wiltshire scenarios.</p>
         </div>
         <div class="rounded-xl border border-white/10 bg-black/20 p-4">
-          <p class="text-sm text-thruster">Goal 2</p>
-          <p class="mt-2 text-sm text-slate-300">Validate the LLM outputs inside GMAT and/or Python astrodynamics workflows.</p>
+          <p class="text-sm text-thruster">Phase 2</p>
+          <p class="mt-2 text-sm text-slate-300">Use GMAT to validate transfer, rendezvous, and cislunar mission design outputs.</p>
         </div>
         <div class="rounded-xl border border-white/10 bg-black/20 p-4">
-          <p class="text-sm text-white">Goal 3</p>
-          <p class="mt-2 text-sm text-slate-300">Investigate the guardrails where agentic models can truly and responsibly assist mission planners.</p>
+          <p class="text-sm text-white">Phase 3</p>
+          <p class="mt-2 text-sm text-slate-300">Identify the information, constraints, and prompting structure needed for reliable agentic trajectory design.</p>
         </div>
       </div>
     </div>

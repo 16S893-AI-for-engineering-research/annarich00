@@ -2,67 +2,70 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Project | Trajectory Copilot" description="Project overview, methodology, and success criteria.">
+<BaseLayout title="Project | Trajectory CoPilot" description="Project overview for Trajectory CoPilot: an agentic interface for astrodynamics and mission design.">
   <section class="space-y-8">
-    <h1 class="text-4xl font-bold">Trajectory Copilot</h1>
+    <div class="space-y-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-orbital">Project overview</p>
+      <h1 class="text-4xl font-bold">Trajectory CoPilot</h1>
+      <p class="max-w-4xl text-slate-300">An agentic interface for astrodynamics and mission design that helps engineers explore, validate, and iterate on trajectory solutions while keeping the results grounded in physics-based verification.</p>
+    </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Problem statement</h2>
-        <p class="text-slate-300">As mission design moves deeper into the cislunar environment, trajectory optimization and rendezvous become much more complex. Large language models show strong reasoning and coding ability, while their accuracy and usefulness as engineering copilots for astrodynamics in cislunar space is an area I want to look further into.</p>
-        <p class="text-slate-300">The central question is not whether AI can replace astrodynamics tools or mission planners, but rather how can they can help interpret, analyze, and then optimize future trajectories more effectively.</p>
+        <p class="text-slate-300">Trajectory design is becoming increasingly complex as more spacecraft operate in cislunar space and encounter three-body dynamics, uncertain environments, and changing mission objectives. Traditional trajectory work demands significant expertise and time, which limits how quickly engineers can explore alternatives.</p>
+        <p class="text-slate-300">This project asks whether an AI agent can act as a trajectory copilot that helps with design exploration while still producing physically correct, verifiable answers.</p>
       </div>
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Why it matters</h2>
-        <p class="text-slate-300">Space operations are expanding into the Earth-Moon system, which demands both technical expertise and extensive computational analysis. If AI can support trajectory design in a trustworthy way, it could improve productivity and, via non-deterministic features, give creative, unique ideas for trajectory planning.</p>
-        <p class="text-slate-300">This matters for future cislunar operations, autonomous rendezvous, and space domain awareness workflows where engineers need fast iteration with physically valid results.</p>
+        <p class="text-slate-300">For space operations, especially in the Space Force context, fast and informed decisions matter when assets face known and unknown threats. AI systems may help planners explore more alternatives faster, but they must remain grounded in physics-based validation.</p>
+        <p class="text-slate-300">I want to understand how an LLM can serve as an interface between mission planners and existing analysis tools such as GMAT, while still maintaining engineering rigor.</p>
       </div>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Research question</h2>
-        <p class="text-slate-300">Can large language models effectively support spacecraft trajectory design through physics-based mission analysis tools?</p>
+        <p class="text-slate-300">Can an AI agent reliably assist with trajectory design while using established analysis tools to verify its results?</p>
       </div>
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Methodology</h2>
-        <p class="text-slate-300">My workflow combines large language models such as ChatGPT, Gemini, Claude, and future frontier systems within the pi harness, coupled with physics-based tools including GMAT and Python astrodynamics libraries.</p>
-        <p class="text-slate-300">I hope to test AI-generated mission designs, optimization approaches, and simulation workflows, using the traditional astrodynamics tools to provide physical validation.</p>
+        <p class="text-slate-300">I will start with two-body astrodynamics problems and progress to Clohessy-Wiltshire rendezvous and one-orbit, two-burn rendezvous cases. I want to map the relationship between transfer duration and required delta-V, then test when assumptions break down.</p>
+        <p class="text-slate-300">GMAT will serve as an independent verification environment, alongside other analytical or Python-based checks, so the agent can be evaluated on both correctness and usefulness.</p>
       </div>
     </div>
 
     <div class="card">
-      <h2 class="text-2xl font-semibold">System flow</h2>
+      <h2 class="text-2xl font-semibold">Workflow</h2>
       <div class="mt-6 flex flex-col items-center gap-4 md:flex-row md:justify-between">
-        <div class="flow-node pulse">Plan</div>
+        <div class="flow-node pulse">Problem</div>
         <div class="text-orbital">→</div>
-        <div class="flow-node pulse">Prompt</div>
+        <div class="flow-node pulse">Agent</div>
         <div class="text-orbital">→</div>
-        <div class="flow-node pulse">Simulate</div>
+        <div class="flow-node pulse">Verify</div>
         <div class="text-orbital">→</div>
-        <div class="flow-node pulse">Validate</div>
+        <div class="flow-node pulse">Iterate</div>
       </div>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="card space-y-4">
-        <h2 class="text-2xl font-semibold">Milestones</h2>
+        <h2 class="text-2xl font-semibold">Planned phases</h2>
         <ol class="space-y-3 text-slate-300">
-          <li><strong>1.</strong> Build a benchmark dataset from known astrodynamics problems.</li>
-          <li><strong>2.</strong> Test multiple LLMs on problem setup, explanation, and workflow generation.</li>
-          <li><strong>3.</strong> Compare AI-generated solutions against known analytical and numerical results.</li>
-          <li><strong>4.</strong> Evaluate whether LLMs can assist an engineer using GMAT or related tools.</li>
-          <li><strong>5.</strong> Summarize findings and identify the most promising directions for thesis work.</li>
+          <li><strong>Phase 1:</strong> Solve benchmark problems from Professor Miller's previous orbital dynamics material.</li>
+          <li><strong>Phase 2:</strong> Use GMAT and publicly available mission scenarios to verify the agent’s outputs.</li>
+          <li><strong>Phase 3:</strong> Test harder rendezvous and cislunar cases to see when assumptions fail.</li>
+          <li><strong>Phase 4:</strong> Identify what information and prompting structure are needed for reliable solutions.</li>
         </ol>
       </div>
       <div class="card space-y-4">
-        <h2 class="text-2xl font-semibold">Success metrics</h2>
+        <h2 class="text-2xl font-semibold">Success criteria</h2>
         <ul class="space-y-3 text-slate-300">
-          <li>Accuracy of solutions relative to known benchmarks</li>
-          <li>Ability to explain and set up optimization problems correctly</li>
-          <li>Quality of generated GMAT or simulation workflows</li>
-          <li>Consistency across multiple models</li>
-          <li>Usefulness to a human engineer working through trajectory design</li>
+          <li>Correct mathematical setup of trajectory problems</li>
+          <li>Reliable detection of when assumptions no longer apply</li>
+          <li>Successful physics-based verification in GMAT</li>
+          <li>Clear identification of missing information or constraints</li>
+          <li>Improved efficiency in exploring trajectory design options</li>
         </ul>
       </div>
     </div>
@@ -70,11 +73,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Data and restrictions</h2>
-        <p class="text-slate-300">This project uses public data only. The benchmark set is based on non-sensitive reference problems from one of Professor Miller's previous Orbital Dynamics classes, as well as publicly available GMAT resources and examples.</p>
+        <p class="text-slate-300">The first phase uses MIT orbital dynamics class material that is not data restricted. The second phase uses GMAT and publicly available examples and mission scenarios. No proprietary, classified, or otherwise restricted data will be used.</p>
       </div>
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Long-term vision</h2>
-        <p class="text-slate-300">This class project is the foundation for a future master’s thesis on AI-assisted mission planning in more complex dynamic environments, including CR3BP, Earth-Moon trajectory design, cislunar rendezvous, and autonomous mission planning under uncertainty.</p>
+        <p class="text-slate-300">If successful, this project can form the basis for future research into AI-assisted mission planning in increasingly complex orbital environments, including cislunar operations and other dynamic mission design problems.</p>
       </div>
     </div>
   </section>

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Project Schedule" description="Proposed semester plan for the AI-assisted trajectory design project.">
+<BaseLayout title="Schedule | Trajectory CoPilot" description="Semester schedule for the Trajectory CoPilot project.">
   <script is:inline>
     const PASSWORD = 'schedule me';
     window.addEventListener('DOMContentLoaded', () => {
@@ -40,10 +40,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="space-y-8">
     <div class="space-y-4">
-      <p class="text-sm uppercase tracking-[0.3em] text-orbital">Private planning page</p>
-      <h1 class="text-4xl font-bold">Project Schedule</h1>
+      <p class="text-sm uppercase tracking-[0.3em] text-orbital">Project schedule</p>
+      <h1 class="text-4xl font-bold">Trajectory CoPilot Schedule</h1>
       <p class="max-w-3xl text-slate-300">
-        Enter the password to view the proposed semester plan.
+        Enter the password to view the proposed semester plan for building, testing, and validating the trajectory copilot.
       </p>
     </div>
 
@@ -61,52 +61,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="grid gap-6 lg:grid-cols-2">
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 1</h2>
-          <p class="text-slate-300">Finalize scope, lock the one-pager, and define benchmark sources and success criteria.</p>
+          <p class="text-slate-300">Finalize the project scope, one-pager, and success criteria.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 2</h2>
-          <p class="text-slate-300">Build the first benchmark problems and capture expected outputs or reference solutions.</p>
+          <p class="text-slate-300">Gather benchmark problems from Professor Miller's orbital dynamics material and organize reference solutions.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 3</h2>
-          <p class="text-slate-300">Run baseline LLM tests and record failure modes, confusion points, and helpful outputs.</p>
+          <p class="text-slate-300">Test the agent on two-body astrodynamics and Clohessy-Wiltshire rendezvous problems.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 4</h2>
-          <p class="text-slate-300">Set up GMAT or Python verification workflows and compare AI output against known results.</p>
+          <p class="text-slate-300">Start one-orbit and two-burn rendezvous tests and document transfer-time versus delta-V tradeoffs.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 5</h2>
-          <p class="text-slate-300">Compare AI+GMAT against GMAT-only to see whether the model improves speed or clarity.</p>
+          <p class="text-slate-300">Set up GMAT verification workflows and compare agent results against analytical and numerical checks.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Week 6</h2>
-          <p class="text-slate-300">Refine the scoring rubric and improve prompts, benchmark descriptions, or validation steps.</p>
+          <p class="text-slate-300">Identify when assumptions fail and determine what information was missing from the prompt or scenario.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Weeks 7–8</h2>
-          <p class="text-slate-300">Present progress, expand to additional benchmark cases, and document what changed after feedback.</p>
+          <p class="text-slate-300">Refine prompt structure, validation steps, and the agent's ability to explain its reasoning.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Weeks 9–10</h2>
-          <p class="text-slate-300">Add harder cases such as formation reconfiguration or low-thrust transfer problems.</p>
+          <p class="text-slate-300">Move to harder rendezvous or cislunar scenarios and compare the agent’s workflow with human problem solving.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Weeks 11–12</h2>
-          <p class="text-slate-300">Synthesize findings into patterns of where LLMs help, where they fail, and where human oversight remains necessary.</p>
+          <p class="text-slate-300">Synthesize results into patterns showing where the agent helps, where it fails, and how to improve prompts.</p>
         </div>
         <div class="card space-y-3">
           <h2 class="text-2xl font-semibold">Weeks 13–14</h2>
-          <p class="text-slate-300">Polish the portfolio, freeze the repo, and prepare the final project presentation and discussion points.</p>
+          <p class="text-slate-300">Finish the site, finalize documentation, and prepare the final presentation.</p>
         </div>
       </div>
 
       <div class="card space-y-4">
         <h2 class="text-2xl font-semibold">Weekly rhythm</h2>
         <ul class="space-y-2 text-slate-300">
-          <li>Early week: run tests or extend the benchmark set</li>
-          <li>Midweek: validate results with GMAT or Python</li>
-          <li>Late week: update the site and log what worked or failed</li>
+          <li>Early week: extend the benchmark set or write a new scenario</li>
+          <li>Midweek: run the agent and verify outputs with GMAT or Python</li>
+          <li>Late week: record failure modes, missing assumptions, and next steps</li>
         </ul>
       </div>
     </div>
