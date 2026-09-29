@@ -32,7 +32,7 @@ const entries = [
   },
 
   {
-    date: '2026-09-16',
+    date: '2026-09-24',
     title: 'Counted my lengthiest session on September 11 by session messages and tool calls',
     summary: "Messages: 58 Tool Calls: 174 ",
     details: "I used these two commands to investigate the details of my run on Sept 11: grep -o ''role':'user'' ~/.pi/agent/sessions/--home-anna_ford--/2026-09-11T18-38-51-749Z_01a091c3-ed62-701b-81b5-ecbd1ab73f3c.jsonl | wc -l and grep -o ''type':'toolCall'' ~/.pi/agent/sessions/--home-anna_ford--/2026-09-11T18-38-51-749Z_01a091c3-ed62-701b-81b5-ecbd1ab73f3c.jsonl | wc -l"
@@ -67,7 +67,20 @@ const entries = [
             <p class="mt-2 text-sm text-thruster">Click to expand for more detail.</p>
           </summary>
           <div class="mt-4 border-t border-white/10 pt-4 text-slate-300">
-            {entry.details}
+            <p>{entry.details}</p>
+            {entry.date === '2026-09-24' && entry.title === 'Reproduced two graphs within orbital dynamics field.' && (
+              <div class="mt-4 grid gap-4">
+                <figure>
+                  <img src="file:///home/anna_ford/projects/recon-figure4/outputs/figure4.png" alt="Figure 4" class="w-full rounded-xl border border-white/10" />
+                </figure>
+                <figure>
+                  <img src="file:///home/anna_ford/projects/recon-figure4/outputs/figure4-overlay.png" alt="Figure 4 overlay" class="w-full rounded-xl border border-white/10" />
+                </figure>
+                <figure>
+                  <img src="file:///home/anna_ford/projects/cw-pareto/outputs/cw-pareto.png" alt="Clohessy-Wiltshire pareto plot" class="w-full rounded-xl border border-white/10" />
+                </figure>
+              </div>
+            )}
           </div>
         </details>
       ))}
