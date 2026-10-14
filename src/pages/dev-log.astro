@@ -2,11 +2,47 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const entries = [
+
+{
+    date: '2026-10-14',
+    title: 'Used Xvfb for GMAT screenshot within subtask and adjusted some settings within the orbital view of GMAT.',
+    summary: 'Tasks were labeled TJC-3: Capture a real GMAT GUI screenshot using Xvfb and fix missing OrbitView textures/models, TJC-1.16: Harden the complete workflow after the early vertical slice, TJC-4 - Refresh the committed GMAT vertical-slice example with a real GMAT GUI screenshot and TJC-1.8: Add focused tests for the scoped end-to-end workflow. Explanations below.'
+    details: 'Subagents ran the first three tasks to successfully run GMAT and show evidence with a screenshot. The fourth subtask was an inspection of currently all 116 tests, which addressed a gap for GMAT execution/CW singularity issue and another gap to ensure all skills point to the source code for any numerical calculations.'
+},
+
+{
+    date: '2026-10-12',
+    title: 'Iterated on GMAT use and ',
+    summary: 'Tasks were labeled TJC-2: Capture a real GMAT GUI screenshot and store it in a discoverable location (failed), TJC-1.19: Return a unified numerical and visual verification report and TJC-1.9: Create the four-category rendezvous benchmark. Explanations below.'
+    details: 'Subagents ran the first two tasks to attempt screenshotting again. After both failed at the screenshot task, main agent recommended downloading Xvfb for screenshot capabilities for the agent--so I downloaded that. The third task created a benchmark of the example problems I wanted to initially solve for using the Copilot.'
+},
+
+{
+    date: '2026-10-11',
+    title: 'Added a model selector skill and attempted GMAT screenshot.',
+    summary: 'Tasks were labeled TJC-1.14: Implement assumption-based CW or two-body model selection and TJC-1.21: Harden GMAT execution, comparison, and screenshot capture. Explanations below.'
+    details: 'Subagents ran 1.14 to create a skill that allows the problem formalizer to hand off information to another skill that will select the correct model for implementation (currently only CW and 2-body models available for scope). The hardening of GMAT did not produce a correct screenshot, but rather an SVG 2-D image that was accurate but not really helpful for any mission planning.'
+},
+
+{
+    date: '2026-10-09',
+    title: 'Addressed more test cases with subtasks from backlog and started first attempt at utilizing GMAT for verification with user.',
+    summary: 'Tasks were labeled TJC-1.6: Verify LVLH/inertial state transformations, TJC-1.12: Narrow and harden rendezvous problem formalizer, TJC-1.2: Align controlled reference and scoped skills and TJC-1.20: Build early CW-to-GMAT vertical slice. Explanations below.'
+    details: 'Subagents did two tasks running extra test cases for the frame translation (from LVLH for CW to inertial for two-body)', and narrowed the scope for what the Copilot will actually solve given specific inputs. Also, a subagent decided to split up my two skills into four here (TJC 1.2), but I'm not sure this is the best way to continue and may have it revert back if it becomes too complicated. The first integration of GMAT took a while, but opened up the actual GUI multiple times which could be useful in the future to show the user/mission designer.'
+},
+
+{
+    date: '2026-10-08',
+    title: 'Resolved singularity issue within code base using State Transition Matrices with backlog tasks and ',
+    summary: 'Subagents completed tasks to not only identify the singularity issue, but solve for an answer when a case that results in matrix singularity is presented.',
+    details: 'Tasks were labeled TJC-1.3: Audit CW state-transition implementation, TJC-1.4: Handle singular CW two-burn targeting and TJC-1.15: Harden deterministic CW rendezvous solution path'
+},
+
 {
     date: '2026-10-06',
     title: 'Addressed two tasks next to-do',
-    summary: 'Had a subagent complete TJC 1.5 — Harden the deterministic two-body rendezvous fallback and TJC ',
-    details: 'The initial project included 23 sub-tasks to Task TJC 1 (TraJectory Copilot 1 main task). I then asked within the same session to adjust the Defintion of Done paramaters to include updating my educational/walkthrough site and usng atomic commits to git for traceability. My current project was in another folder, so one of the first tasks was to copy over everything I had begun to implement. I also realzied I wanted another verification step with Poliastro (which is the last task add listed here) after talking wiht my lab mentor. I ran tasks: TJC-1.1 — Recovered baseline implementation; TJC-1.24 — Synchronized upstream workspace and educational site; TJC-1.25 — Aligned site with scoped roadmap and living progress; TJC-1.26 — Established initial checkpoint and atomic commit policy; TJC-1.27 — Defined pinned Poliastro verification architecture.'
+    summary: 'Had a subagent complete TJC 1.5 — Harden the deterministic two-body rendezvous fallback and two tasks for verification with Poliastro.',
+    details: 'The hardening task and poliastro tasks ran in parallel and had two separate goals--the hardening task set up tests for correct units and frames within the problem, while TJC-1.7: Verify two-body propagation against pinned Poliastro and TJC-1.27: Define pinned Poliastro verification architecture were tasks that allowed for integration with the Poliastro astrodynamics github library. This will most likely need to be refined in future iterations since I will have my agent working in a sandbox--right now it access poliastro documentation/orbital equations via the web.'
 },
 
 {
