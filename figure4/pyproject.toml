@@ -1,0 +1,28 @@
+[project]
+name = "recon-figure4"
+version = "0.1.0"
+description = "Physics-based reproduction of Paek (2020) Figure 4"
+readme = "README.md"
+authors = [
+    { name = "annarich00", email = "annarich@mit.edu" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+]
+
+[project.scripts]
+reproduce-figure4 = "recon_figure4.figure4:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.168.1",
+    "pymupdf>=1.28.2",
+    "pypdf>=6.19.0",
+    "pytest>=9.1.1",
+]
