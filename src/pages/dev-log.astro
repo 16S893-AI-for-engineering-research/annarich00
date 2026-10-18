@@ -4,6 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-10-18',
+    title: 'Addressed Prashanths issue/feedback on my repo',
+    summary: 'I had another new session add a Figure 4 subfolder and a private Copilot repo. Also addressed my mis-construal of a subagent splitting a skill up in entry: 2026-10-09, and Poliastro verification/clarification on current status',
+    details: '1. Figure 4 folder: pushed the 9/24 Figure 4 reproduction code and tests (TDD, Hypothesis-based physical-invariant checks, the rendered + overlay figures) into figure4/ in this repo. 2. Private Trajectory CoPilot repo: pushed the full project (146 passing tests, GMAT verification pipeline, benchmark/baseline-comparison evaluation) to a new private repo, github.com/annarich00/trajectory-copilot--can add collaborators as needed. 3. Skill split correction: had an agent trace the actual git history behind splitting my skills from 3 into 5. It wasnt the agent improvising -- it was my own acceptance-criteria wording ("limited to formulation, CW rendezvous, two-body rendezvous, model selection, and verification") taken literally as 5 separate skill files rather than 5 architectural responsibilities. I am considering folding GMAT verification back in as a tool call inside the workflow rather than keeping it a standalone skill. 4. Poliastro: a genuine comparison ran against real pinned Poliastro, including the exact one-period circular-orbit check Prashanth put in the issue, passing at 9.7e-05 m position error. Whats still open: that Python 3.10 environment was built in a temp directory that no longer exists, so re-running it live needs re-provisioning, not building from scratch -- added that as my next step.'
+},
+
+{
     date: '2026-10-14',
     title: 'Used Xvfb for GMAT screenshot within subtask and adjusted some settings within the orbital view of GMAT.',
     summary: 'Tasks were labeled TJC-3: Capture a real GMAT GUI screenshot using Xvfb and fix missing OrbitView textures/models, TJC-1.16: Harden the complete workflow after the early vertical slice, TJC-4 - Refresh the committed GMAT vertical-slice example with a real GMAT GUI screenshot and TJC-1.8: Add focused tests for the scoped end-to-end workflow. Explanations below.',
