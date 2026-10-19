@@ -4,6 +4,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-10-19',
+    title: 'Audited my test suite against my original testing prompt, opened 3 follow-up tasks',
+    summary: 'Had an agent check my test suite against the 5 practices I originally asked for (uv, TDD,
+ minimal-implementation-first, Hypothesis, physical invariants). 2 were solid, but no uv in the core project, no
+ real test-first discipline, and zero use of Hypothesis -- existing physics tests only check single hand-picked
+ examples, not swept ranges.',
+    details: 'Opened 3 Backlog tasks, not yet started: TJC-5 adds a TDD policy (new tests must show a failing run,
+ then a passing run, recorded in task notes) without changing my one-task-one-commit rule; TJC-6 (depends on
+ TJC-5) adds Hypothesis property tests for 5 specific physics checks (CW STM, two-body energy conservation, LVLH
+ round-trips, CW targeting, model-selector monotonicity); TJC-7 decides whether/where to adopt uv for the core project,
+ since I already use it in my separate Figure 4 repo but never decided this one way or the other here.'
+},
+
+{
     date: '2026-10-18',
     title: 'Addressed Prashanths issue/feedback on my repo',
     summary: 'I had another new session add a Figure 4 subfolder and a private Copilot repo. Also addressed my mis-construal of a subagent splitting a skill up in entry: 2026-10-09, and Poliastro verification/clarification on current status',
