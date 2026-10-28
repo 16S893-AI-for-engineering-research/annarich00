@@ -4,6 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-10-28',
+    title: 'Created tasks TJC 10-TJC 15 for pod tasks that I want to implement.',
+    summary: 'In my pod, the issue we created documents the tasks I want to implement in order to make calling GMAT a tool, creating an expert GMAT subagent that has a corpus of open-source GMAT examples to refer to (it will then double-check the proposed GMAT executable code against this corpus) and for adding a rule that enforces following my desired workflow for skills.',
+    details: 'The current way GMAT is called is through a skill with defined code/syntax, but I want this to be a traceable tool call and able to be called outside the workflow if i want to. For the GMAT expert subagent, i had to break out more tasks for this, since I need one to gather open-source examples and another task to format this into a readable JSON format. I also added a task that will synchronize the GMAT tool call and expert subagent, so that these are a part of the normal workflow when I want to run my trajectory-copilot agent. The rule is an extra reinforcement on the rendezvous prompt that directs the workflow. This skill is working currently, but the rule will enforce the exact workflow/prevent the agent from skipping steps I have deemed necessary.'
+}
+
+{
     date: '2026-10-22',
     title: 'Confirmed the interactive GMAT GUI cant be opened from this sandbox -- two separate, non-retryable reasons, agent documented workaround',
     summary: 'Wanted to know once and for all whether I could get GMAT-R2026a to actually pop up a window I could see and click around in from inside the sandboxed agent session. Answer is no, confirmed two independent ways, and neither is something the agent could fix with an environment variable or permission. The non-interactive screenshot capture (the Xvfb workaround from TJC-3 on 10/12) still works fine for evidence -- this is specifically about the interactive window, which is a separate mechanism.',
