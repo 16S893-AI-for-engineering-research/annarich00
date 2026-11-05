@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to demo the rendezvous plots to your PI: Case B (quarter period)</title>
+<style>
+:root{--paper:#fcfcfa;--ink:#242a30;--muted:#535e68;--rule:#d9dfe2;--tint:#f0f3f4;--link:#185a86}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:850px;margin:auto;padding:48px 28px 80px}h1{font-size:2rem;line-height:1.25}h2{font-size:1.4rem;margin:40px 0 12px;border-top:1px solid var(--rule);padding-top:20px}h3{font-size:1.1rem;margin:24px 0 6px}
+code,pre{font-family:ui-monospace,Menlo,monospace;font-size:.88em}code{background:var(--tint);padding:1px 4px;border-radius:3px}pre{background:var(--tint);padding:12px 14px;overflow-x:auto;white-space:pre-wrap;border-radius:4px}
+a{color:var(--link)}table{border-collapse:collapse;margin:16px 0;width:100%}th,td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;vertical-align:top}th{border-bottom:2px solid var(--ink)}
+figure{margin:20px 0}img{max-width:100%;height:auto;border:1px solid var(--rule)}figcaption,.muted{font-size:.875rem;color:var(--muted)}
+.say{border-left:3px solid var(--link);padding:2px 0 2px 14px;margin:14px 0;background:var(--tint)}.say b{display:block;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.tip{border-left:3px solid #a65f00;padding-left:14px;margin:14px 0}
+</style></head><body><main>
+<p class="muted">Companion to <a href="/annarich00/walkthrough-tjc-16/">the verification walkthrough</a></p>
+<h1>How to demo the rendezvous plots to your PI: Case B (quarter period)</h1>
+
+<p>This is a script for a 10 to 15 minute demo. It follows the order in which the pipeline produces its plots, so the story builds as the plots appear. Every number below came from one real run of Case B on this project's code with real GMAT: outcome <strong>VERIFIED</strong>, comparison <strong>PASS</strong>.</p>
+
+<h2 id="problem">1. The problem in one minute</h2>
+<div class="say"><b>Say</b>A target spacecraft is in a circular orbit 400 km up. A chaser sits 1000 m ahead of it, along the orbit, and is not moving relative to it. We want the chaser to meet the target exactly, with zero relative speed, in a quarter of an orbit, using two short engine burns.</div>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>Orbit</td><td>Circular, 400 km altitude, orbit radius 6778.137 km, Earth mu = 398600.4418 km³/s²</td></tr>
+<tr><td>Orbital period</td><td>5553.62 s, so a quarter is <strong>1388.406 s</strong> (about 23 minutes)</td></tr>
+<tr><td>Chaser start</td><td>1000 m ahead of the target, zero relative velocity</td></tr>
+<tr><td>Goal</td><td>Relative position 0, relative velocity 0, at 1388.406 s</td></tr>
+<tr><td>Burns</td><td>Two impulsive (instant) burns: one at departure, one at arrival</td></tr>
+</table>
+<h3>Read the axes once, and then reuse them</h3>
+<p>All plots use the target's moving frame (called LVLH). The target is always at the origin.</p>
+<ul>
+<li><code>x</code> is radial: positive means higher, away from Earth.</li>
+<li><code>y</code> is along-track: positive means ahead of the target on the orbit.</li>
+<li><code>z</code> is cross-track: sideways from the orbit plane. It stays 0 in this case.</li>
+</ul>
+
+<h2 id="launch">2. Start the run</h2>
+<p>Type the request into the project's agent session. The standing rule routes it through formalizer, model selector, workflow and GMAT, in that order, even without typing the slash command.</p>
+<pre>/rendezvous Earth is the central body, R_earth = 6378.137 km, μ = 398600.4418 km³/s². The target is in a circular orbit at 400 km altitude. LVLH frame: x radial outward, y along-track, z cross-track, right-handed. At t = 0, the chaser relative position is [0 m, 1000 m, 0 m] and relative velocity is [0 m/s, 0 m/s, 0 m/s]. Use two impulsive burns, one at departure and one at arrival. After 1388.406068 seconds (one quarter of the target's orbital period), reach relative position [0 m, 0 m, 0 m] and relative velocity [0 m/s, 0 m/s, 0 m/s]. Return the two burn vectors and terminal relative state.</pre>
+<div class="tip"><strong>Before the meeting:</strong> do a dry run so GMAT's start-up time is not a surprise. In the run I checked, the plots appeared as three separate artifacts in this order: 3D scene, trajectory plot, comparison plots. If a plot does not appear, say so and do not substitute another figure; the pipeline is built to report "not generated" rather than fake one.</div>
+
+<h2 id="scene">3. Plot 1: the 3D scene</h2>
+<p>File: <a href="/annarich00/walkthroughs/tjc-16/case-b-3d-scene.html">case-b-3d-scene.html</a> (interactive, about 5 MB; open it in a browser and rotate it).</p>
+<div class="say"><b>Say</b>This is just the setup, drawn before any maths. The sphere is Earth, the orange dot is the target, and the red line is where the chaser will be relative to it over the 23 minutes.</div>
+<ul>
+<li>The chaser's offset from the target is the exact computed relative position.</li>
+<li>Where the target sits around Earth is only illustrative. The figure says so in its title and in every trace name. Point this out before your PI asks; it is not a real ephemeris or epoch.</li>
+<li>At Earth scale a 1 km path is tiny. Zoom in on the target to see it. I generated this file but did not open it, so check it in the dry run.</li>
+</ul>
+
+<h2 id="trajectory">4. Plot 2: trajectory and burns</h2>
+<figure><img src="/annarich00/walkthroughs/tjc-16/case-b-trajectory-burns.png" alt="Chaser path in the radial and along-track plane with the target, two burns and the rendezvous point marked"><figcaption>Chaser path in the target's frame. Horizontal is radial x, vertical is along-track y. Produced right after the solve, before GMAT runs.</figcaption></figure>
+<div class="say"><b>Say</b>This is the plan. The chaser starts 1000 m ahead (top of the plot, burn 1). A burn pushes it up and backward, it drifts along a curved arc, and it arrives at the target (the triangle at the origin) just as burn 2 stops it.</div>
+<table>
+<tr><th>Marker in legend</th><th>What it means here</th></tr>
+<tr><td>Chaser path (blue line)</td><td>Predicted relative position over the 1388 s. The arc bulges to about <strong>252 m</strong> above the target's orbit. I computed this from the solution's sample points.</td></tr>
+<tr><td>Target (triangle)</td><td>The origin. By definition the target never moves in this frame.</td></tr>
+<tr><td>Burn 1 (circle)</td><td>At the start, (0, 1000) m. Velocity change [0.688, -0.344, 0] m/s: up and backward.</td></tr>
+<tr><td>Burn 2 (square)</td><td>At the end. Velocity change [0.688, +0.344, 0] m/s. It cancels the arrival velocity [-0.688, -0.344, 0] m/s exactly, leaving zero relative speed.</td></tr>
+<tr><td>Rendezvous (star)</td><td>Target state: position 0 and velocity 0.</td></tr>
+</table>
+<p>The total cost is <strong>1.539 m/s</strong> of delta-v. The path is a curve, not a straight line, because the chaser and target are both in orbit; being slightly higher or lower changes how fast you move along the orbit. That is the physics the Clohessy-Wiltshire (CW) model captures: a linearized model of relative motion near a circular orbit.</p>
+<div class="tip"><strong>Likely PI question:</strong> "Why not just thrust straight at it?" Answer: in orbit, thrust changes your orbit, not just your position, so the useful path is a curve that the CW equations compute for you.</div>
+
+<h2 id="compare-traj">5. Plot 3: CW prediction against GMAT</h2>
+<figure><img src="/annarich00/walkthroughs/tjc-16/case-b-cw-vs-gmat-trajectory.png" alt="3D plot of the CW prediction in blue and the GMAT trajectory as an orange dashed line, which overlap"><figcaption>Same trajectory in 3D: CW prediction (solid blue) against GMAT (dashed orange), in metres.</figcaption></figure>
+<div class="say"><b>Say</b>The plan came from a simplified model, so we do not take its word for it. GMAT is an independent NASA-developed mission tool. We fed it the same two burns and recorded where it says the chaser goes. If the two lines lie on top of each other, the simple model was good enough for this case.</div>
+<ul>
+<li>The blue solid line is the CW prediction. The orange dashed line is GMAT's.</li>
+<li>The lines should overlap to the eye. The difference is shown on the next plot.</li>
+<li>The z axis is essentially flat in this case, because there is no sideways motion.</li>
+</ul>
+
+<h2 id="compare-err">6. Plot 4: how far apart are they?</h2>
+<figure><img src="/annarich00/walkthroughs/tjc-16/case-b-error-history.png" alt="Two stacked plots of position error in metres and velocity error in metres per second against time, each staying under a dotted tolerance line"><figcaption>Position error (top) and velocity error (bottom) between CW and GMAT over time. Dotted black lines are the pass limits.</figcaption></figure>
+<div class="say"><b>Say</b>This answers "how close is close?". The red line is the gap between the two models. The dotted line is the limit I set for calling it a match. Red below dotted means PASS.</div>
+<table>
+<tr><th>Quantity</th><th>Largest gap</th><th>Limit</th></tr>
+<tr><td>Position error</td><td><strong>0.196 m</strong>, at the final sample (t = 1388 s)</td><td>1 m</td></tr>
+<tr><td>Velocity error</td><td><strong>0.000298 m/s</strong>, at the final sample</td><td>0.001 m/s</td></tr>
+</table>
+<ul>
+<li>The error is largest at the end, so you can say: the models drift apart slowly over the 23 minutes, never exceeding 0.2 m on a 1000 m approach.</li>
+<li>GMAT's own final state after both burns is about [0.147, -0.130, 0] m and [0.00013, -0.00027, 0] m/s. So the chaser ends about 20 cm from the target in GMAT, moving at about 0.3 mm/s.</li>
+<li>Likely cause of the gap: CW assumes the offset is small relative to the orbit radius, while GMAT uses full gravity. That is my reading, not something I measured separately.</li>
+</ul>
+<div class="tip"><strong>Likely PI question:</strong> "Is PASS a proof?" No. It means this case matched GMAT within the stated limits, 1 m and 1 mm/s. Those limits are a project choice, so be ready to say why they were chosen.</div>
+
+<h2 id="wrapup">7. Close with these three sentences</h2>
+<ol>
+<li>The solver planned two burns totalling 1.54 m/s for a 1 km, quarter-orbit rendezvous.</li>
+<li>An independent tool, GMAT, flew the same burns and ended within 0.2 m and 0.3 mm/s of the target.</li>
+<li>The plots appear at each stage so a human can check the story at each step, not just trust a final PASS.</li>
+</ol>
+
+<h2 id="limits">What this demo does not show</h2>
+<ul>
+<li>It is one case, run once. It is a small offset near a circular orbit, where CW is expected to work. It says nothing about large separations or elliptical orbits.</li>
+<li>The 3D target placement is illustrative.</li>
+<li>The plots here are from my run of the project code in a separate worktree at the live-display commit, not from the final range head.</li>
+<li>I wrote the plot explanations from the plotting code's labels and the computed numbers. Look at each image once in your dry run before you present.</li>
+</ul>
+</main></body></html>
