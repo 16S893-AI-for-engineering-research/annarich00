@@ -4,6 +4,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-11-11',
+    title: 'Used subagents to run all of TJC 23. Tested this after completion with same three cases from past examples.',
+    summary: 'Completing TJC 23 ended up being much more complicated than I anticipated. I was using Sonnet 5.5 at the beginning, but I think the thinking and reasoning was creating a lot of unnecessary testing. However, once all the subtasks were completed here, I ran my three demo cases that I discussed with Prof Miller before to ensure the outcome was the same--if not better.',
+    details: 'After running these tasks, the output was still the same and ran much faster than usual. I also cleaned up the prompt from before, so things I didnt like that it had done were removed. This will ultimately make TJC 21, the interactive site, much cleaner and the flow nicer. I had an agent update the tasks within TJC 21 after TJC 23 completed to ensure there werent any stale references for when it starts to build the site.'
+},
+
+{
+    date: '2026-11-10',
+    title: 'After Prashanth showed his class example for the airfoil design, I realized I wanted to reframe my agentic framework like this. Had an agent make tasks in TJC 23 (22 got scrapped for a timeout reason), which allow for this clean-up and change.',
+    summary: 'I currently have a prompt that gets loaded each time I ask about a rendezvous question. This prompt walks through the workflow that uses skills and one tool to access GMAT. However, after Prashanths airfoil demo, I think it will be much cleaner to make this prompt a skill and the current skills (4 of them detailed below) into deterministic tool calls.',
+    details: 'The /rendezvous prompt will become a skill that can guide the agent through the workflow of tools--similar to the in-class example. Additionally, the four skills, will be turned into deterministic tool calls. These changes will need to be reflected in my AGENTS.md file, as well. The current skills that will be changed to tool calls are my orbital-problem-formalizer, orbital-model-selector, cw-rendezvous and orbital-two-body-rendezvous. These tool calls will be connected to the corresponding source code created at the beginning of the semester.'
+},
+
+{
+    date: '2026-11-09',
+    title: Scoped the final product--an interactive site--I want to bring to this project for the semester.',
+    summary: 'I brainstormed with an opus agent to see how I could best implement a nice user interface for the agentic layout that I have refined over the semester.',
+    details: 'This brainstorming session allowed me to create backlog tasks to implement this website. I gave another agent the brainstorming session and it created the tasks in TJC 21. I plan to implement this after cleaning up the prompt and skills. I think those are messy right now and arent very clear. I worry that if I were to implement a site right now based off the current framework and workflow, it would be very clunky.'
+},
+
+{
     date: '2026-11-05',
     title: 'Added /walkthrough for the latest tasks in the TJC 16 section that I ran.',
     summary: 'I ran all the tasks in TJC 16, including 16.1-16.5. These tasks were meant to add some plots that show the linearized CW math and two-body propogator math comparisons.',
