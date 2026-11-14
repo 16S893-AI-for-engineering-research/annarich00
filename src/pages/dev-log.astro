@@ -4,8 +4,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-11-12 through 2026-11-14',
+    title: 'Used subagents to run all of TJC 21--which was building the site for demos.',
+    summary: 'This task also used up many tokens and I think my wording in prompting the agent was very poor. I kept getting demo examples that werent good examples of what each run was actually doing and I had to re-start many times.',
+    details: 'I shouldve recorded what my prompts were to execute this task, but I essentially started with a planning session that went into backlog. This went well until the demos were not showing an output that was helpful to see what tools/skills the agents were using to produce the actual results that are helpful. I hit my limit, but the current state of the site in my trajectoy copilot site is an okay exmaple of how the agent runs each orbital rendezvous problem and the outputs it produces. I think it still misses the usefulness of some of the tool calls and it doesnt show the plots/images and the GMAT script well. I am going to re-attack this with a much more lightweight model to try to clean up what is currently there.'
+},
+
+{
     date: '2026-11-11',
-    title: 'Used subagents to run all of TJC 23. Tested this after completion with same three cases from past examples.',
+    title: 'Used subagents to run all of TJC 23, which was re-structuring my project with a heavy emphasis on tool calls versus skills. Tested this after completion with same three cases from past examples.',
     summary: 'Completing TJC 23 ended up being much more complicated than I anticipated. I was using Sonnet 5.5 at the beginning, but I think the thinking and reasoning was creating a lot of unnecessary testing. However, once all the subtasks were completed here, I ran my three demo cases that I discussed with Prof Miller before to ensure the outcome was the same--if not better.',
     details: 'After running these tasks, the output was still the same and ran much faster than usual. I also cleaned up the prompt from before, so things I didnt like that it had done were removed. This will ultimately make TJC 21, the interactive site, much cleaner and the flow nicer. I had an agent update the tasks within TJC 21 after TJC 23 completed to ensure there werent any stale references for when it starts to build the site.'
 },
