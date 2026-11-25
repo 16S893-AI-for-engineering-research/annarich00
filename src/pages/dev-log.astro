@@ -4,6 +4,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const entries = [
 
 {
+    date: '2026-11-24',
+    title: 'Brainstormed the addition of higher fidelity propagators and rendezvous solutions.',
+    summary: 'My original goal for this semester was to be able to find solutions within 2-body AND 3-body space. My current set-up only approximates a two-body solution. There are ways to access higher fidelity solvers in order to get better two-body results and eventually build off of this for three-body space.',
+    details: 'After brainstorming with a lighter weight model, I believe the best way to attack this goal is to use the propagators and solvers within GMAT. These are tools that my agent already has many examples to tap into and could use this as source code in order to calculate a two-burn hohmann transfer or lambert transfer. GMAT also has two modes that can find a feasible solution or the minimum fuel solution. These options for setting up a mission sequence would be helpful to have stored within a corpus that my agent can refer to.'
+
+
+{
+    date: '2026-11-23',
+    title: 'Added one more demo run to the site.',
+    summary: 'I had wanted to run a pareto front analysis with this framework since the beginning of the semester. I finally did that and had the results recorded in the live demo site.',
+    details: 'I asked the agent to use subagents where necessary to test out the time versus fuel (delta v) solution up to 5 orbital periods. The resulting graph was expected (fuel to go down as time increases) and I asked where the CW linearization passed the error bounds I put in place.'
+},
+
+{
+    date: '2026-11-17 through 2026-11-21',
+    title: 'Re-attacked site demo for PI and finally got a result I liked.',
+    summary: 'I used GPT 5.4 mini to adjust the site that had solid bones from the last try. It still needed many tweaks, though, so using a lighter weight model worked well.',
+    details: 'This was a much better way to use agents to refine the site demo. I think part of the reason why the site demo took so long was because of the difficulty in recording an agent's output for each run that I wanted represented. This was fixed when I explicitly said the exact skill outputs, tool call outputs, and plots. I think for a task like this, where I have very specific requirements I need to be way more explicit at the beginning. I will have to say, this task highlighted some areas that I thought were being done by the agent and were not--one of these is the tool call for a two body propagator...this is not always called since the GMAT run does the same thing. These were helpful for me to see even more into the depths of the framework.'
+},
+
+{
     date: '2026-11-12 through 2026-11-14',
     title: 'Used subagents to run all of TJC 21--which was building the site for demos.',
     summary: 'This task also used up many tokens and I think my wording in prompting the agent was very poor. I kept getting demo examples that werent good examples of what each run was actually doing and I had to re-start many times.',
